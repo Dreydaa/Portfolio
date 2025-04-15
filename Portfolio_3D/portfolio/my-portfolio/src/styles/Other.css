@@ -1,8 +1,252 @@
-.hello1{
-    width: 100px;
+/* ! NavBar */
+
+::-webkit-scrollbar {
+    background-color: transparent;
+    height: 0px;
+    width: 0px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #777777;
+    border-radius: 8px;
+}
+
+.containergalley {
+    width: 512px;
+    height: 64px;
+    border-radius: 16px;
+    background-color: red;
+    position: absolute;
+    top: 16px;
+    left: 16px;
+}
+
+
+.galley {
+    margin-left: 512px;
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+}
+
+.title_A {
+    width: 128px;
+    height: 64px;
+    border-radius: 16px;
+    background-color: blue;
+    margin-left: 32px;
+}
+.title_B {
+    width: 128px;
+    height: 64px;
+    border-radius: 16px;
+    background-color: blue;
+    margin-left: 32px;
+}
+.title_C {
+    width: 128px;
+    height: 64px;
+    border-radius: 16px;
+    background-color: blue;
+    margin-left: 32px;
+}
+.title_D {
+    width: 128px;
+    height: 64px;
+    border-radius: 16px;
+    background-color: blue;
+    margin-left: 32px;
+}
+
+/* !Gallery */
+
+.gallery_container {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+}
+
+.gallery-items {
+    position: absolute;
+    top: 190px;
+    height: 750px;
+    width: 700px;
+    border: 1px solid black;
+}
+
+.art {
+    height: 600px;
+    width: 600px;
+    background-color: gray;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.art:hover {
+    transform: scale(1.02);
+}
+
+.art-title {
+    position: absolute;
+    top: 549px;
+    left: 32px;
     height: 100px;
+    width: 600px;
+    background-color: green;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+
+.art-description {
+    position: absolute;
+    top: 648px;
+    left: 98px;
+    height: 100px;
+    width: 600px;
+    background-color: rgb(18, 158, 18);
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+/* !Art Open */
+
+.separation_container {
+    position: fixed;
+    display: flex;
     top: 0;
     left: 0;
-    background-color: green;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    overflow: hidden;
+}
+
+.separation-0 {
+    width: 50vw;
+    height: 100vh;
+    background-color: crimson;
+    will-change: transform;
+}
+.separation-1 {
+    width: 50vw;
+    height: 100vh;
+    background-color: blue;
+    will-change: transform;
+}
+
+/* !Art Details */
+
+.art_details {
     position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 101;
+}
+
+.close-button {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    height: 32px;
+    width: 64px;
+    background-color: black;
+    border-radius: 16px;
+    color: white;
+    cursor: pointer;
+    z-index: 102;
+}
+
+.close-button:hover {
+    background-color: #333;
+}
+
+.video-load {
+    position: absolute;
+    top: 96px;
+    left: 48px;
+    width: 750px;
+    height: 800px;
+    background-color: lightgray;
+    will-change: transform, opacity;
+    transform-origin: center;
+}
+
+.photo-1, .photo-2, .photo-3 {
+    background-size: cover;
+    background-position: center;
+    will-change: transform, opacity;
+    transform-origin: center;
+}
+
+.text-1, .text-2, .text-3 {
+    will-change: transform, opacity;
+    transform-origin: center;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.photo-1 {
+    position: absolute;
+    top: 64px;
+    left: 1531px;
+    width: 250px;
+    height: 250px;
+    background-color: brown;
+}
+
+.text-1 {
+    position: absolute;
+    top: 126.5px;
+    left: 1099px;
+    width: 400px;
+    height: 125px;
+    background-color: lightblue;
+}
+
+.photo-2 {
+    position: absolute;
+    top: 323px;
+    left: 877px;
+    width: 450px;
+    height: 250px;
+    background-color: brown;
+}
+
+.text-2 {
+    position: absolute;
+    top: 385.5px;
+    left: 1359px;
+    width: 400px;
+    height: 125px;
+    background-color: lightblue;
+}
+
+.photo-3 {
+    position: absolute;
+    top: 584px;
+    left: 1456px;
+    width: 400px;
+    height: 400px;
+    background-color: brown;
+}
+
+.text-3 {
+    position: absolute;
+    top: 684px;
+    left: 1024px;
+    width: 400px;
+    height: 200px;
+    background-color: lightblue;
 }

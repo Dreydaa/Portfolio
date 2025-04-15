@@ -37,7 +37,8 @@
 
 .bibi{
   position: absolute;
-  top: -25px;
+  left: 1%;
+  top: -20px;
   width: 100px;
   height: 50px;
   transition: transform 0.3s ease-in-out;
@@ -47,8 +48,9 @@
   z-index: 51;
 }
 
+
 .bibiContainer:hover .bibi{
-  transform: translateY(25px);
+  transform: translateY(20px);
 }
 
 .bibiSuperContainer {
@@ -94,59 +96,21 @@
   transform: translateX(20px);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.return-magz {
+.previewArchi,
+.previewClothes,
+.previewWbd,
+.previewOther {
   position: absolute;
-  display: flex;
-  left: 16px;
-  top: 24px;
-}
-
-.magzz{
-  font-family: "Vogue";
-  font-size: 48px;
-  font-style: italic;
-
-  width: 900px;
-  height: 100px;
-}
-
-.row {
-  position: absolute;
-  top: 42px;
-  left: 20px;
-  width: 450px;
-  height: 2px;
-  background-color: #0a0e14;
+  top: 64px;
+  right: 128px;
+  background-color: red;
+  width: 1080px;
+  height: 512px;
+  opacity: 0;
+  transform: translateX(30px);
+  pointer-events: none; /* Prevent clicking through even when visible */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
 }
 
 .links  {
