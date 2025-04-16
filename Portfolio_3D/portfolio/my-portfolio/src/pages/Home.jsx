@@ -6,7 +6,10 @@ import "../components/App";
 import LocomotiveScroll from "locomotive-scroll";
 import { gsap } from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+// Register GSAP plugins
+gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 
 function previewBeVisible(previewClass) {
   const preview = document.querySelector(`.${previewClass}`);
@@ -34,8 +37,131 @@ function previewDontBeVisible(previewClass) {
   }
 }
 
-// Register GSAP ScrollTo plugin
-gsap.registerPlugin(ScrollToPlugin);
+// Architecture Grid Animation function
+const animateArchitectureGrid = () => {
+  // Initial state - all grid items have 0 scale
+  gsap.set([
+    ".grid-Archi", 
+    ".grid-Archi1", 
+    ".grid-Archi2", 
+    ".grid-Archi3",
+    ".grid-Archi4", 
+    ".grid-Archi5", 
+    ".grid-Archi6"
+  ], {
+    scaleX: 0,
+    scaleY: 0,
+    transformOrigin: "left top",
+    opacity: 0
+  });
+
+  // Create the animation timeline
+  const gridTimeline = gsap.timeline({
+    defaults: {
+      ease: "power3.out"
+    }
+  });
+
+  // Step 1: Stretch grid-Archi from left to right
+  gridTimeline.to(".grid-Archi", {
+    scaleX: 1,
+    scaleY: 1,  
+    opacity: 1,
+    duration: 0.8,
+    transformOrigin: "left center",
+  });
+
+  // Step 2: Stretch grid-Archi 1, 3, 2 from top to bottom in cascade
+  gridTimeline.to(".grid-Archi3", {
+      scaleY: 1,
+      scaleX: 1,
+      opacity: 1,
+      duration: 0.6,
+      transformOrigin: "center top",
+    }, "-=0.3")
+    .to(".grid-Archi1", {
+      scaleY: 1,
+      scaleX: 1,
+      opacity: 1,
+      duration: 0.6,
+      transformOrigin: "center top",
+    }, "-=0.3")
+    .to(".grid-Archi2", {
+      scaleY: 1,
+      scaleX: 1,
+      opacity: 1,
+      duration: 0.6,
+      transformOrigin: "center top",
+    }, "-=0.3");
+
+  // Step 3: Stretch grid-Archi 4, 6, 5 from bottom to top in reverse cascade
+  gridTimeline
+    .to(".grid-Archi4", {
+      scaleY: 1,
+      scaleX: 1,
+      opacity: 1,
+      duration: 0.6,
+      transformOrigin: "center bottom",
+    }, "-=0.2")
+    .to(".grid-Archi6", {
+      scaleY: 1,
+      scaleX: 1,
+      opacity: 1,
+      duration: 0.6,
+      transformOrigin: "center bottom",
+    }, "-=0.3")
+    .to(".grid-Archi5", {
+      scaleY: 1,
+      scaleX: 1,
+      opacity: 1,
+      duration: 0.6,
+      transformOrigin: "center bottom",
+    }, "-=0.3");
+
+  return gridTimeline;
+};
+
+// Integration of ScrollTrigger with Locomotive Scroll
+const initScrollTriggerWithLocomotive = (scrollContainer, locomotiveInstance) => {
+  // Tell ScrollTrigger to use these proxy methods for the ".scroll-container" element
+  ScrollTrigger.scrollerProxy(scrollContainer, {
+    scrollTop(value) {
+      return arguments.length 
+        ? locomotiveInstance.scrollTo(value, 0, 0) 
+        : locomotiveInstance.scroll.instance.scroll.y;
+    },
+    getBoundingClientRect() {
+      return {
+        top: 0,
+        left: 0,
+        width: window.innerWidth,
+        height: window.innerHeight
+      };
+    },
+    // LocomotiveScroll handles things completely differently on mobile devices
+    pinType: scrollContainer.style.transform ? "transform" : "fixed"
+  });
+
+  // Update ScrollTrigger when locomotive scroll updates
+  locomotiveInstance.on("scroll", ScrollTrigger.update);
+
+  // After everything is set up, refresh ScrollTrigger
+  ScrollTrigger.refresh();
+};
+
+// Setup Architecture Animation with ScrollTrigger
+const setupArchitectureAnimation = () => {
+  // Create the ScrollTrigger that will play the animation
+  // when the architecture section comes into view
+  ScrollTrigger.create({
+    trigger: ".archi-container", 
+    scroller: ".scroll-container",
+    start: "top 80%", // When the top of the section is 80% from the top of viewport
+    onEnter: () => animateArchitectureGrid(),
+    markers: false, // Set to true for debugging
+    once: true // Ensure animation only plays once
+  });
+};
 
 // ParallaxImage component remains unchanged
 const ParallaxImage = ({
@@ -286,6 +412,12 @@ function Home() {
 
         scrollInstanceRef.current = scroll;
 
+        // Initialize ScrollTrigger with Locomotive
+        initScrollTriggerWithLocomotive(scrollContainerRef.current, scroll);
+        
+        // Setup architecture grid animation
+        setupArchitectureAnimation();
+
         // Make all text elements visible
         document.querySelectorAll(".containerAll [data-scroll]").forEach((el) => {
           el.style.opacity = "1";
@@ -330,6 +462,7 @@ function Home() {
         if (scrollInstanceRef.current) {
           scrollInstanceRef.current.update();
         }
+        ScrollTrigger.refresh();
       });
     }, 100);
 
@@ -348,6 +481,10 @@ function Home() {
         scrollInstanceRef.current.destroy();
         scrollInstanceRef.current = null;
       }
+      
+      // Kill all ScrollTriggers
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      
       // Cancel any active GSAP animations
       gsap.killTweensOf([
         menuRef.current, 
@@ -361,7 +498,14 @@ function Home() {
         ".previewArchi",
         ".previewClothes",
         ".previewWbd",
-        ".previewOther"
+        ".previewOther",
+        ".grid-Archi",
+        ".grid-Archi1",
+        ".grid-Archi2",
+        ".grid-Archi3",
+        ".grid-Archi4",
+        ".grid-Archi5",
+        ".grid-Archi6"
       ]);
     };
   }, []);
@@ -433,15 +577,9 @@ function Home() {
       scrollInstanceRef.current.stop();
     }
 
-    // Get the color from the clicked element
-    const computedStyle = window.getComputedStyle(
-      containerRef.current.querySelector("div")
-    );
-    const backgroundColor = computedStyle.backgroundColor;
-
     // Set the transition div color
     gsap.set(transitionRef.current, {
-      backgroundColor: backgroundColor,
+      backgroundColor: "red", // Use a default color
       bottom: "-100%",
     });
 
@@ -551,7 +689,7 @@ function Home() {
                   ref={contentRefs.archi} 
                   className="archibibi transition-all duration-300"
                 >
-                  Architecture 
+                  Curriculum Vitae 
                 </div>
                 <div className="previewArchi"></div>
                 
@@ -571,7 +709,7 @@ function Home() {
                   ref={contentRefs.clothes} 
                   className="clotheibibi transition-all duration-300"
                 >
-                  CLothing 
+                  Blender
                 </div>
                 <div className="previewClothes"></div>
                 
@@ -591,7 +729,7 @@ function Home() {
                   ref={contentRefs.wbd} 
                   className="wbdbibi transition-all duration-300"
                 >
-                  Web Design 
+                  Web Design
                 </div>
                 <div className="previewWbd"></div>
                 
@@ -611,7 +749,7 @@ function Home() {
                   ref={contentRefs.others} 
                   className="otherbibi transition-all duration-300"
                 >
-                  Contact 
+                  Contact me !
                 </div>
                 <div className="previewOther"></div>
                 
@@ -656,7 +794,6 @@ function Home() {
         <div className="my-portfolio forced-visible">PORTFOLIO</div>
       </div>
 
-      {/* Rest of your code remains unchanged */}
       {/* Parallax section */}
       <div
         className="scroll-section"
@@ -697,15 +834,35 @@ function Home() {
           className="architecture"
           data-scroll
           ref={archiContainerRef}
-          onClick={() =>
-            handleCardClick(
-              "/Architecture",
-              archiContainerRef,
-              archiTransitionRef
-            )
-          }
         >
-          Blender Architecture / Organic
+          <div className="grid-Archi">Bultel Alan
+            <p>Radiant</p>
+          </div>
+          <div className="grid-Archi1">
+            <div className="age"></div>
+            <div className="photo"></div>
+          </div>
+          <div className="grid-Archi2"> Compétences
+            <div className="technologiesFrontEnd"></div>
+            <div className="technologiesBackEnd"></div>
+          </div>
+          <div className="grid-Archi3">Experiences
+          <div className="experience"></div>
+          <div className="experience1"></div>
+          </div>
+          
+          <div className="grid-Archi4">Formation
+            <div className="formation"></div>
+            <div className="formation1"></div>          
+            </div>
+          <div className="grid-Archi5">Loisirs
+            <div className="loisirs">
+            </div>
+          </div>
+          <div className="grid-Archi6"
+            onClick={(e) => { e.stopPropagation(); scrollToSection(sectionRefs.others);}}>
+            contact me
+          </div>
         </div>
       </div>
 
@@ -723,13 +880,21 @@ function Home() {
           ref={clothesContainerRef}
           onClick={() =>
             handleCardClick(
-              "/Clothes",
+              "/Blender",
               clothesContainerRef,
               clothesTransitionRef
             )
           }
         >
-          Blender Clothes / Animation
+          <div className="clothesDescriptionContainer"></div>
+          <div className="clothesDescription">Last Project</div>
+        </div>
+        <div className="clothesText">
+        <div className="clothesText1">
+          I started learning Blender at the beginning of 2025, 
+        I've already done a few projects and some of them using ThreeJS. 
+        I'm constantly learning in this field and 
+        I really enjoy it because curiosity makes me want to take on bigger challenges.</div>
         </div>
       </div>
 
@@ -746,11 +911,12 @@ function Home() {
           data-scroll
           ref={wbdContainerRef}
           onClick={() =>
-            handleCardClick("/Animation", wbdContainerRef, wbdTransitionRef)
+            handleCardClick("/WebDesign", wbdContainerRef, wbdTransitionRef)
           }
         >
           Web Design
         </div>
+        <div className="wbdText"></div>
       </div>
 
       {/* Others Container */}
@@ -761,15 +927,17 @@ function Home() {
         ref={sectionRefs.others}
         data-scroll
       >
+        <div className="upperCovering"></div>
+        <div className="covering"></div>
         <div
           className="others"
           data-scroll
           ref={othersContainerRef}
-          onClick={() =>
-            handleCardClick("/Other", othersContainerRef, othersTransitionRef)
-          }
         >
-          Contact
+          <div className="othersText2">HAVE A PROJECT IN MIND ?</div>
+          <div className="othersText">LET'S CREATE</div>
+          <div className="othersText1">GREAT THINGS TOGETHER</div>
+          <button className="sendMail">Bultel0alan@gmail.com</button>
         </div>
       </div>
     </div>

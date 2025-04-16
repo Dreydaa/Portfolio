@@ -42,14 +42,14 @@
   width: 100px;
   height: 50px;
   transition: transform 0.3s ease-in-out;
-  background-color: red;
+  background-color: #F5F5F5;
   border-bottom-right-radius: 16px;
   border-bottom-left-radius: 16px;
   z-index: 51;
 }
 
 
-.bibiContainer:hover .bibi{
+.bibi:hover{
   transform: translateY(20px);
 }
 
@@ -60,11 +60,12 @@
 }
 
 .menuBibi {
-  border: 1px solid red;
   height: 0;
   width: 100%;
-  background-color: #f2e9e4;
+  background-color: #F5F5F5;
   overflow: hidden;
+
+  border-radius: 0px 0px 128px 128px;
 }
 
 .bibiContent {
@@ -80,9 +81,8 @@
 .clotheibibi, 
 .wbdbibi, 
 .otherbibi {
-  background-color: red;
   margin-bottom: 32px;
-  width: 512px;
+  width: 650px;
   height: auto;
   padding: 10px;
   cursor: pointer;
@@ -103,7 +103,7 @@
   position: absolute;
   top: 64px;
   right: 128px;
-  background-color: red;
+  background-color: #4a4e69;
   width: 1080px;
   height: 512px;
   opacity: 0;
@@ -130,6 +130,7 @@
 
   width: 160px;
   height: 100px;
+  color: #F5F5F5;
 }
 
 .figma {
@@ -137,7 +138,7 @@
   font-size: 48px;
   font-style: italic;
 
-
+  color: #F5F5F5;
   width: 130px;
   height: 100px;
 }
@@ -147,7 +148,7 @@
   font-size: 48px;
   font-style: italic;
 
-  
+  color: #F5F5F5;
   width: 210px;
   height: 100px;
 }
@@ -173,7 +174,7 @@
   height: 135px;
   border-radius: 16px;
 
-  color: #0a0e14;
+  color: #F5F5F5;
 }
 
 .my-portfolio{
@@ -190,7 +191,7 @@
   height: 270px;
   border-radius: 16px;
 
-  color: blanchedalmond;
+  color: #FFFFFF;
 }
 
 .jumping-letter {
@@ -291,25 +292,378 @@
 
 /* Add subtle background colors to containers */
 .archi-container {
-  background-color: rgba(242, 233, 228, 0.01);
+  background-color: #060606
 }
 
 .clothes-container {
-  background-color: rgba(201, 173, 167, 0.1);
+  background-color: #060606;
 }
 
 .wbd-container {
-  background-color: rgba(154, 140, 152, 0.1);
+  background-color: #060606;
 }
 
 .others-container {
-  background-color: rgba(74, 78, 105, 0.1);
+  background-color: #060606;
 }
 
+/* ! bento */
+
 .architecture{
-  width: 100px;
+  position: absolute;
+  border: 1px solid red;
+  top: 64px;
+
+  width: 1720px;
+  height: 950px;
+
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+}
+
+.grid-Archi {
+  /* nom prénom*/
+   grid-area: 1 / 1 / 2 / 10;
+   background-color: wheat;
+   border-radius: 24px;
+
+    font-family: "Aspira", sans-serif;
+    font-size: 36px;
+    text-align: left;
+    padding-top: 8px;
+    padding-left: 16px;
+}
+
+p {
+  font-family: "Aspira", sans-serif;
+  font-size: 24px;
+}
+
+h {
+  font-family: "Aspira", sans-serif;
+  font-size: 20px;
+}
+
+
+.grid-Archi1 {
+  /* photo */
+  grid-area: 2 / 4 / 7 / 7;
+  background-color: rgb(241, 209, 149);
+  border-radius: 24px;
+}
+
+.age {
+  margin-top: 364px;
+  margin-left: 31px;
+  width: 150px;
+  height: 50px;
+  background-color: red;
+
+  border-radius: 16px;
+  border-bottom-left-radius: 0%;
+}
+
+.photo {
+  margin-left: 31px;
+  width: 500px;
+  height: 75px;
+  background-color: red;
+
+  border-radius: 24px;
+  border-top-left-radius: 0%;
+}
+
+.grid-Archi2 {
+  /* compétence */
+  grid-area: 2 / 10 / 8 / 7;
+  background-color: rgb(248, 209, 136);
+  border-radius: 24px;
+
+  font-family: "Aspira", sans-serif;
+    font-size: 32px;
+    text-align: left;
+    padding-top: 8px;
+    padding-left: 16px;
+}
+
+.technologiesFrontEnd {
+  margin-left: 12px;
+  margin-top: 24px;
+  width: 500px;
+  height: 250px;
+  background-color: red;
+}
+
+.technologiesBackEnd {
+  margin-left: 12px;
+  width: 500px;
+  height: 250px;
+  background-color: green;
+}
+
+
+.grid-Archi3 {
+  /* expérience */
+  grid-area: 2 / 1 / 6 / 4;
+  background-color: rgb(252, 201, 107);
+  border-radius: 24px;
+
+  font-family: "Aspira", sans-serif;
+  font-size: 32px;
+  text-align: left;
+  padding-top: 8px;
+  padding-left: 16px;
+}
+
+.experience {
+  margin-left: 12px;
+  margin-top: 24px;
+  width: 500px;
+  height: 150px;
+  background-color: green;
+}
+
+.experience1 {
+  margin-left: 12px;
+  width: 500px;
+  height: 150px;
+  background-color: red;
+}
+
+.grid-Archi4 {
+  /* formation */
+  grid-area: 6 / 1 / 10 / 4;
+  background-color: rgb(241, 173, 46);
+  border-radius: 24px;
+
+  font-family: "Aspira", sans-serif;
+  font-size: 32px;
+  text-align: left;
+  padding-top: 8px;
+  padding-left: 16px;
+}
+
+.formation {
+  margin-left: 12px;
+  margin-top: 24px;
+  width: 500px;
+  height: 150px;
+  background-color: green;
+}
+
+.formation1 {
+  margin-left: 12px;
+  width: 500px;
+  height: 150px;
+  background-color: red;
+}
+
+.grid-Archi5 {
+  /* loisirs */
+  grid-area: 8 / 7 / 10 / 10;
+  background-color: rgb(236, 160, 19);
+  border-radius: 24px;
+
+  font-family: "Aspira", sans-serif;
+  font-size: 32px;
+  text-align: left;
+  padding-top: 8px;
+  padding-left: 16px;
+}
+
+.loisirs {
+  margin-left: 12px;
+  margin-top: 8px;
+  width: 500px;
   height: 100px;
+  background-color: green;
+}
+
+.grid-Archi6 {
+  /* contact me */
+  grid-area: 7 / 4 / 10 / 7;
+  background-color: rgb(121, 79, 2);
+  border-radius: 24px;
+
+  font-family: "Aspira", sans-serif;
+  font-size: 32px;
+  text-align: left;
+  padding-top: 8px;
+  padding-left: 16px;
+}
+
+.archiText{
+  position: absolute;
+  top: 160px;
+  left: 64px;
+
+  width: 512px;
+  height: 750px;
+  background-color: darkcyan;
+}
+
+/* ! 18 août 98 */
+
+.clothes{
+  position: absolute;
+  top: 160px;
+  left: 64px;
+
+  width: 1000px;
+  height: 750px;
+  border-radius: 32px;
+  background-image: url("https://zupimages.net/up/25/16/94pb.png");
+  background-size: cover;
+  background-position: center;  
+  background-repeat: no-repeat;
+
+  cursor: pointer;
+
+  display: flex;
+  justify-content: start;
+  align-items: flex-end;
+}
+
+.clothesDescriptionContainer{
+  position: absolute;
+  left: 32px;
+  bottom: 32px;
+  width: 300px;
+  height: 75px;
+  background-color: rgba(255, 255, 255, 0.305);
+
+  border-radius: 64px;
+}
+
+.clothesDescription{
+  position: absolute;
+  left: 43px;
+  bottom: 42px;
+  font-family: 'Aspira', sans-serif;
+  font-size: 48px;
+  letter-spacing: 2px;
+
+  color: #F5F5F5;
+}
+
+.clothesText {
+  position: absolute;
+  top: 535px;
+  right: 128px;
+
+  width: 512px;
+  height: 375px;
+  background-color: #F5F5F5;
+
+  border-radius: 64px;
+}
+
+.clothesText1 {
+  margin-top: 38px;
+  margin-left: 24px;
+  margin-right: 24px;
+  font-family: "Aspira", sans-serif;
+  font-size: 32px;
+}
+
+.webDesign{
+  position: absolute;
+  border: 1px solid red;
+  top: 160px;
+  right: 128px;
+
+  width: 1000px;
+  height: 750px;
+  border-radius: 32px;
   background-color: wheat;
+}
+
+.wbdText{
+  position: absolute;
+  top: 160px;
+  left: 64px;
+
+  width: 512px;
+  height: 750px;
+  background-color: darkcyan;
+}
+
+.upperCovering {
+  position: absolute;
+  top: 0;
+  width: 1920px;
+  height: 384px;
+  background-color: #060606;
+  border-radius: 0px 0px 128px 128px;
+}
+
+.covering {
+  width: 1920px;
+  height: 1090px;
+  background-color: #f5f5f5;
+}
+
+.others {
+  position: absolute;
+  top: 160px;
+  left: 460px;
+
+  margin-top: 256px;
+
+  width: 1000px;
+  height: 512px;
+}
+
+.sendMail {
+  position: absolute;
+  top: 75%;
+  left: 350px;
+
+  width: 300px;
+  height: 50px;
+  border-radius: 64px;
+
+  font-family: 'Aspira', sans-serif;
+  font-size: 18px;
+
+  border: 2px solid #060606;
+  color: #060606;
+
+  transition: transform 0.3s ease-in-out;
+}
+
+.sendMail:hover{
+  transform: scale(1.1);
+}
+
+.othersText {
+  margin-bottom: -24px;
+
+  text-align: center;
+  font-family: "Aspira";
+  font-size: 70px;
+  font-weight: 100;
+  color: #060606;
+
+}
+
+.othersText1 {
+  text-align: center;
+  font-family: "Aspira";
+  font-size: 70px;
+  color: #060606;
+
+}
+.othersText2 {
+  text-align: center;
+  font-family: "Aspira", sans-serif;
+  font-size: 25px;
+  margin-bottom: 64px;
+  color: #060606;
+
 }
 
 button {

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../styles/Archi.css";
 import gsap from "gsap";
 
+
 // Gallery item component with its own details
 const GalleryItem = ({ item, index }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -225,7 +226,7 @@ export default function Archi() {
             overlayElement.style.left = '0';
             overlayElement.style.width = '100%';
             overlayElement.style.height = '100%';
-            overlayElement.style.backgroundColor = 'red'; // Using same color as in App.css
+            overlayElement.style.backgroundColor = '#060606'; // Using same color as in App.css
             overlayElement.style.zIndex = '1000';
             document.body.appendChild(overlayElement);
             transitionOverlayRef.current = overlayElement;
