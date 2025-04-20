@@ -7,19 +7,24 @@ import LocomotiveScroll from "locomotive-scroll";
 import { gsap } from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Github as GitHub, Figma, Linkedin, Mail, ArrowUpRight, Code2, Database, Palette, Users, Box, Lightbulb, ArrowBigDown, ArrowDown, ArrowDownIcon } from 'lucide-react';
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
-
 function previewBeVisible(previewClass) {
   const preview = document.querySelector(`.${previewClass}`);
   if (preview) {
-    // Use GSAP for smooth animation
     gsap.to(preview, {
       opacity: 1,
       x: 0,
       duration: 0.4,
-      ease: "power2.out"
+      ease: "power2.out",
+      onStart: () => {
+        preview.style.pointerEvents = 'none';
+      },
+      onComplete: () => {
+        preview.style.pointerEvents = 'auto';
+      }
     });
   }
 }
@@ -27,7 +32,7 @@ function previewBeVisible(previewClass) {
 function previewDontBeVisible(previewClass) {
   const preview = document.querySelector(`.${previewClass}`);
   if (preview) {
-    // Use GSAP for smooth animation out
+    preview.style.pointerEvents = 'none';
     gsap.to(preview, {
       opacity: 0,
       x: 30,
@@ -41,12 +46,12 @@ function previewDontBeVisible(previewClass) {
 const animateArchitectureGrid = () => {
   // Initial state - all grid items have 0 scale
   gsap.set([
-    ".grid-Archi", 
-    ".grid-Archi1", 
-    ".grid-Archi2", 
+    ".grid-Archi",
+    ".grid-Archi1",
+    ".grid-Archi2",
     ".grid-Archi3",
-    ".grid-Archi4", 
-    ".grid-Archi5", 
+    ".grid-Archi4",
+    ".grid-Archi5",
     ".grid-Archi6"
   ], {
     scaleX: 0,
@@ -65,7 +70,7 @@ const animateArchitectureGrid = () => {
   // Step 1: Stretch grid-Archi from left to right
   gridTimeline.to(".grid-Archi", {
     scaleX: 1,
-    scaleY: 1,  
+    scaleY: 1,
     opacity: 1,
     duration: 0.8,
     transformOrigin: "left center",
@@ -73,12 +78,12 @@ const animateArchitectureGrid = () => {
 
   // Step 2: Stretch grid-Archi 1, 3, 2 from top to bottom in cascade
   gridTimeline.to(".grid-Archi3", {
-      scaleY: 1,
-      scaleX: 1,
-      opacity: 1,
-      duration: 0.6,
-      transformOrigin: "center top",
-    }, "-=0.3")
+    scaleY: 1,
+    scaleX: 1,
+    opacity: 1,
+    duration: 0.6,
+    transformOrigin: "center top",
+  }, "-=0.3")
     .to(".grid-Archi1", {
       scaleY: 1,
       scaleX: 1,
@@ -126,8 +131,8 @@ const initScrollTriggerWithLocomotive = (scrollContainer, locomotiveInstance) =>
   // Tell ScrollTrigger to use these proxy methods for the ".scroll-container" element
   ScrollTrigger.scrollerProxy(scrollContainer, {
     scrollTop(value) {
-      return arguments.length 
-        ? locomotiveInstance.scrollTo(value, 0, 0) 
+      return arguments.length
+        ? locomotiveInstance.scrollTo(value, 0, 0)
         : locomotiveInstance.scroll.instance.scroll.y;
     },
     getBoundingClientRect() {
@@ -154,12 +159,100 @@ const setupArchitectureAnimation = () => {
   // Create the ScrollTrigger that will play the animation
   // when the architecture section comes into view
   ScrollTrigger.create({
-    trigger: ".archi-container", 
+    trigger: ".archi-container",
     scroller: ".scroll-container",
     start: "top 80%", // When the top of the section is 80% from the top of viewport
     onEnter: () => animateArchitectureGrid(),
     markers: false, // Set to true for debugging
     once: true // Ensure animation only plays once
+  });
+};
+
+
+// Setup 3D hover effect for skill cards
+const setup3DCardEffect = () => {
+  // Select all skill cards
+  const cards = document.querySelectorAll('.skill-card');
+
+  cards.forEach(card => {
+    // Variables for tracking mouse position
+    let bounds;
+    let mouseX;
+    let mouseY;
+
+    // Add event listeners
+    card.addEventListener('mouseenter', handleMouseEnter);
+    card.addEventListener('mousemove', handleMouseMove);
+    card.addEventListener('mouseleave', handleMouseLeave);
+
+    // Mouse enter handler
+    function handleMouseEnter() {
+      bounds = card.getBoundingClientRect();
+
+      // Set initial state with no rotation
+      gsap.set(card, {
+        transformPerspective: 1000,
+        transformStyle: "preserve-3d"
+      });
+
+      // Animate to slightly raised position
+      gsap.to(card, {
+        duration: 0.3,
+        y: -10,
+        scale: 1.03,
+        boxShadow: "0 14px 28px rgba(0,0,0,0.15), 0 10px 10px rgba(0,0,0,0.12)",
+        ease: "power2.out"
+      });
+    }
+
+    // Mouse move handler
+    function handleMouseMove(e) {
+      // Calculate mouse position relative to card center
+      mouseX = e.clientX - bounds.left - bounds.width / 2;
+      mouseY = e.clientY - bounds.top - bounds.height / 2;
+
+      // Calculate rotation values based on mouse position
+      const rotateY = -mouseX / 10; // Horizontal rotation
+      const rotateX = mouseY / 10;  // Vertical rotation
+
+      // Apply the 3D rotation
+      gsap.to(card, {
+        duration: 0.5,
+        rotationX: rotateX,
+        rotationY: rotateY,
+        ease: "power2.out"
+      });
+
+      // Add a subtle highlight effect
+      const shine = gsap.utils.mapRange(
+        -bounds.width / 2,
+        bounds.width / 2,
+        0.8,
+        1.2,
+        mouseX
+      );
+
+      gsap.to(card, {
+        duration: 0.5,
+        filter: `brightness(${shine})`,
+        ease: "power2.out"
+      });
+    }
+
+    // Mouse leave handler
+    function handleMouseLeave() {
+      // Reset to original state
+      gsap.to(card, {
+        duration: 0.7,
+        rotationX: 0,
+        rotationY: 0,
+        y: 0,
+        scale: 1,
+        filter: "brightness(1)",
+        boxShadow: "0 0 0 rgba(0,0,0,0)",
+        ease: "elastic.out(1, 0.3)"
+      });
+    }
   });
 };
 
@@ -211,6 +304,9 @@ function Home() {
   const bibiRef = useRef(null);
   const bibiSuperContainerRef = useRef(null);
   const crossSvgRef = useRef(null);
+  const contentContainerRef = useRef(null);
+  const animationInProgress = useRef(false);
+
   const contentRefs = {
     archi: useRef(null),
     clothes: useRef(null),
@@ -256,7 +352,31 @@ function Home() {
     });
 
     // Initialize GSAP menu timeline
-    menuTimeline.current = gsap.timeline({ paused: true });
+    menuTimeline.current = gsap.timeline({
+      paused: true, onStart: () => {
+        animationInProgress.current = true;
+      },
+      onComplete: () => {
+        if (menuOpen.current && contentContainerRef.current) {
+          gsap.set(contentContainerRef.current, {
+            pointerEvents: "auto"
+          });
+        }
+        animationInProgress.current = false;
+      },
+      onReverseComplete: () => {
+        gsap.set(bibiRef.current, {
+          clearProps: "x, y",
+        })
+
+        if (contentContainerRef.current) {
+          gsap.set(contentContainerRef.current, {
+            pointerEvents: "none"
+          });
+        }
+        animationInProgress.current = false;
+      }
+    });
 
     gsap.set(".cross__circle", {
       strokeDasharray: 166,
@@ -363,11 +483,11 @@ function Home() {
     // Add hover effects for menu items
     const menuItems = [
       contentRefs.archi.current,
-      contentRefs.clothes.current, 
+      contentRefs.clothes.current,
       contentRefs.wbd.current,
       contentRefs.others.current
     ];
-    
+
     menuItems.forEach(item => {
       if (item) {
         item.addEventListener('mouseenter', () => {
@@ -378,7 +498,7 @@ function Home() {
             ease: "power2.out"
           });
         });
-        
+
         item.addEventListener('mouseleave', () => {
           gsap.to(item, {
             scale: 1,
@@ -414,9 +534,12 @@ function Home() {
 
         // Initialize ScrollTrigger with Locomotive
         initScrollTriggerWithLocomotive(scrollContainerRef.current, scroll);
-        
+
         // Setup architecture grid animation
         setupArchitectureAnimation();
+
+        // Setup 3D hover effect for skill cards
+        setup3DCardEffect();
 
         // Make all text elements visible
         document.querySelectorAll(".containerAll [data-scroll]").forEach((el) => {
@@ -471,25 +594,25 @@ function Home() {
       menuItems.forEach(item => {
         if (item) {
           // Use similar anonymous functions for removal
-          item.removeEventListener('mouseenter', () => {});
-          item.removeEventListener('mouseleave', () => {});
+          item.removeEventListener('mouseenter', () => { });
+          item.removeEventListener('mouseleave', () => { });
         }
       });
-      
+
       // Clean up on unmount
       if (scrollInstanceRef.current) {
         scrollInstanceRef.current.destroy();
         scrollInstanceRef.current = null;
       }
-      
+
       // Kill all ScrollTriggers
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-      
+
       // Cancel any active GSAP animations
       gsap.killTweensOf([
-        menuRef.current, 
-        bibiRef.current, 
-        ".cross__circle", 
+        menuRef.current,
+        bibiRef.current,
+        ".cross__circle",
         ".cross__path",
         contentRefs.archi.current,
         contentRefs.clothes.current,
@@ -515,7 +638,7 @@ function Home() {
     e.stopPropagation(); // Prevent event bubbling
     toggleMenu();
   };
-  
+
   // Handle cross SVG click - this will close the menu
   const handleCrossClick = (e) => {
     e.stopPropagation(); // Prevent event bubbling
@@ -523,24 +646,25 @@ function Home() {
       toggleMenu();
     }
   };
-  
+
   // Toggle menu function
   const toggleMenu = () => {
-    if (menuTimeline.current) {
-      if (!menuOpen.current) {
-        menuTimeline.current.play();
-      } else {
-        menuTimeline.current.reverse();
-        gsap.set(".cross__circle", {
-          strokeDashoffset: 166
-        });
-        gsap.set(".cross__path", {
-          strokeDashoffset: 48
-        });
+    if (animationInProgress.current || !menuTimeline.current) return;
+    
+    animationInProgress.current = true;
+    
+    if (!menuOpen.current) {
+      menuTimeline.current.play();
+    } else {
+      if (contentContainerRef.current) {
+        contentContainerRef.current.style.pointerEvents = 'none';
       }
-      menuOpen.current = !menuOpen.current;
+      menuTimeline.current.reverse();
     }
+    
+    menuOpen.current = !menuOpen.current;
   };
+  
 
   // Fixed scrollToSection function to work properly with Locomotive Scroll
   const scrollToSection = (ref) => {
@@ -549,7 +673,7 @@ function Home() {
       if (menuOpen.current) {
         menuTimeline.current.reverse();
         menuOpen.current = false;
-        
+
         gsap.set(".cross__circle", {
           strokeDashoffset: 166
         });
@@ -557,7 +681,7 @@ function Home() {
           strokeDashoffset: 48
         });
       }
-      
+
       // Wait for menu animation to complete before scrolling
       setTimeout(() => {
         scrollInstanceRef.current.scrollTo(ref.current, {
@@ -640,7 +764,7 @@ function Home() {
       });
     }
   };
-  
+
   const handleMenuItemMouseLeave = (ref) => {
     if (ref.current) {
       gsap.to(ref.current, {
@@ -651,6 +775,47 @@ function Home() {
       });
     }
   };
+
+  const skills = [
+    {
+      icon: <Code2 size={32} />,
+      title: "Frontend Development",
+      description: "JavaScript, HTML5, CSS3, React, ThreeJS",
+      level: "Advanced",
+    },
+    {
+      icon: <Database size={32} />,
+      title: "Backend & Database",
+      description: "Vite.js, SQL, Golang",
+      level: "Intermediate",
+    },
+    {
+      icon: <Palette size={32} />,
+      title: "UI/UX Design",
+      description: "Figma, Design Systems, Prototyping",
+      level: "Intermediate",
+    },
+    {
+      icon: <Box size={32} />,
+      title: "3D Modeling & Rendering",
+      description: "Blender, Materials, Texturing",
+      level: "Beginner",
+    },
+    {
+      icon: <Users size={32} />,
+      title: "Teamworking & Creativity",
+      description: "Git, Agile, Design Thinking",
+      level: "Intermediate",
+    },
+    {
+      icon: <Lightbulb size={32} />,
+      title: "Lighting & Simulation",
+      description: "EEVEE, Cycles, Physics Sims",
+      level: "Beginner",
+    }
+  ];
+
+
 
   return (
     <div
@@ -671,13 +836,13 @@ function Home() {
         <div className="bibiContainer">
           <div className="bibiSuperContainer" ref={bibiSuperContainerRef}>
             <div className="menuBibi" ref={menuRef} onClick={(e) => e.stopPropagation()}>
-              <div className="bibiContent">
+              <div className="bibiContent" ref={contentContainerRef}>
                 {/* Content items - Only these and the cross should be clickable */}
-                <div 
-                  onClick={(e) => { 
-                    e.stopPropagation(); 
+                <div
+                  onClick={(e) => {
+                    e.stopPropagation();
                     scrollToSection(sectionRefs.archi);
-                  }} 
+                  }}
                   onMouseEnter={() => {
                     handleMenuItemMouseEnter(contentRefs.archi);
                     previewBeVisible('previewArchi');
@@ -686,18 +851,18 @@ function Home() {
                     handleMenuItemMouseLeave(contentRefs.archi);
                     previewDontBeVisible('previewArchi');
                   }}
-                  ref={contentRefs.archi} 
+                  ref={contentRefs.archi}
                   className="archibibi transition-all duration-300"
                 >
-                  Curriculum Vitae 
+                  Curriculum Vitae
                 </div>
                 <div className="previewArchi"></div>
-                
-                <div 
-                  onClick={(e) => { 
-                    e.stopPropagation(); 
+
+                <div
+                  onClick={(e) => {
+                    e.stopPropagation();
                     scrollToSection(sectionRefs.clothes);
-                  }} 
+                  }}
                   onMouseEnter={() => {
                     handleMenuItemMouseEnter(contentRefs.clothes);
                     previewBeVisible('previewClothes');
@@ -706,18 +871,18 @@ function Home() {
                     handleMenuItemMouseLeave(contentRefs.clothes);
                     previewDontBeVisible('previewClothes');
                   }}
-                  ref={contentRefs.clothes} 
+                  ref={contentRefs.clothes}
                   className="clotheibibi transition-all duration-300"
                 >
                   Blender
                 </div>
                 <div className="previewClothes"></div>
-                
-                <div 
-                  onClick={(e) => { 
-                    e.stopPropagation(); 
+
+                <div
+                  onClick={(e) => {
+                    e.stopPropagation();
                     scrollToSection(sectionRefs.wbd);
-                  }} 
+                  }}
                   onMouseEnter={() => {
                     handleMenuItemMouseEnter(contentRefs.wbd);
                     previewBeVisible('previewWbd');
@@ -726,18 +891,18 @@ function Home() {
                     handleMenuItemMouseLeave(contentRefs.wbd);
                     previewDontBeVisible('previewWbd');
                   }}
-                  ref={contentRefs.wbd} 
+                  ref={contentRefs.wbd}
                   className="wbdbibi transition-all duration-300"
                 >
                   Web Design
                 </div>
                 <div className="previewWbd"></div>
-                
-                <div 
-                  onClick={(e) => { 
-                    e.stopPropagation(); 
+
+                <div
+                  onClick={(e) => {
+                    e.stopPropagation();
                     scrollToSection(sectionRefs.others);
-                  }} 
+                  }}
                   onMouseEnter={() => {
                     handleMenuItemMouseEnter(contentRefs.others);
                     previewBeVisible('previewOther');
@@ -746,17 +911,17 @@ function Home() {
                     handleMenuItemMouseLeave(contentRefs.others);
                     previewDontBeVisible('previewOther');
                   }}
-                  ref={contentRefs.others} 
+                  ref={contentRefs.others}
                   className="otherbibi transition-all duration-300"
                 >
                   Contact me !
                 </div>
                 <div className="previewOther"></div>
-                
+
                 {/* Cross SVG - Only this should be clickable to close the menu */}
-                <svg 
-                  className="cross__svg" 
-                  xmlns="http://www.w3.org/2000/svg" 
+                <svg
+                  className="cross__svg"
+                  xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 52 52"
                   ref={crossSvgRef}
                   onClick={handleCrossClick}
@@ -769,24 +934,9 @@ function Home() {
             </div>
           </div>
           {/* Bibi element - Clickable to open the menu */}
-          <div className="bibi" ref={bibiRef} onClick={handleBibiClick}></div>
-        </div>
-        <div className="links">
-          <a className="github" href="https://www.twitch.tv/fatiiiih">
-            Github
-          </a>
-          <a
-            className="figma"
-            href="https://www.instagram.com/watermeloon.music/"
-          >
-            Figma
-          </a>
-          <a
-            className="linkedin"
-            href="https://www.karminecorp.fr/collections/campus/products/polo-campus-beige"
-          >
-            Linkedin
-          </a>
+          <div className="bibi" ref={bibiRef} onClick={handleBibiClick}>
+            <ArrowDownIcon size={32} />
+          </div>
         </div>
         <div className="welcome-to forced-visible">
           <div className="welcome">Welcome to my</div>
@@ -830,38 +980,107 @@ function Home() {
         ref={sectionRefs.archi}
         data-scroll
       >
-        <div
-          className="architecture"
-          data-scroll
-          ref={archiContainerRef}
-        >
-          <div className="grid-Archi">Bultel Alan
-            <p>Radiant</p>
+        <div className="architecture" data-scroll ref={archiContainerRef}>
+
+          <div className="grid-Archi">
+            <h2>BULTEL ALAN</h2>
+            <p>Full-Stack Developper</p>
           </div>
+
           <div className="grid-Archi1">
-            <div className="age"></div>
-            <div className="photo"></div>
+            <div className="profile-frame"></div>
           </div>
-          <div className="grid-Archi2"> Compétences
-            <div className="technologiesFrontEnd"></div>
-            <div className="technologiesBackEnd"></div>
-          </div>
-          <div className="grid-Archi3">Experiences
-          <div className="experience"></div>
-          <div className="experience1"></div>
-          </div>
-          
-          <div className="grid-Archi4">Formation
-            <div className="formation"></div>
-            <div className="formation1"></div>          
+
+          <div className="grid-Archi2">
+            <h3>RELEVANT SKILLS</h3>
+            <div className="skills-grid">
+              <div className="technologiesFrontEnd">
+                {skills.map((skill, index) => (
+                  <div key={index} className="skill-card">
+                    <div className="skill-icon">{skill.icon}</div>
+                    <div className="skill-content">
+                      <h4>{skill.title}</h4>
+                      <p className="skill-description">{skill.description}</p>
+                      <div className="skill-footer">
+                        <span className={`skill-level ${skill.level.toLowerCase()}`} >
+                          {skill.level}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-          <div className="grid-Archi5">Loisirs
+          </div>
+
+          <div className="grid-Archi3">
+            <h3>WORK EXPERIENCE</h3>
+            <div className="experience">
+              <div className="expName">Insternship - Software Developper</div>
+              <div className="expCorp">IDEX - Taranis du rouvray</div>
+              <div className="expDate">January to March 2025</div>
+              <div className="expDescript">
+                <ul>
+                  <li>Set up automations for filling in and sending Google Sheets files, with conversion to pdf and automatic emailing</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="experience">
+              <div className="expName">Internship - Project Manager Assistant in a Design Office</div>
+              <div className="expCorp">Rouen Habitat</div>
+              <div className="expDate">May to July 2021</div>
+              <div className="expDescript">
+                <ul>
+                  <li>Preparation and management of Energy Savings Certificates (ESC) files.</li>
+                  <li>Operational monitoring of worksites at all stages: initiation, execution, and completion.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid-Archi4">
+            <h3>EDUCATIONAL HISTORY</h3>
+            <div className="formation">
+              <div className="formationDescript">Full-Stack Developper</div>
+              <div className="formationName">Zone 01 Rouen Normandie</div>
+              <div className="date">2023-2025</div>
+            </div>
+
+            <div className="formation">
+              <div className="formationDescript">Associate of Science in Energy Systems Technology</div>
+              <div className="formationName">Lycée Le Corbusier</div>
+              <div className="date">2020-2023</div>
+            </div>
+          </div>
+
+          <div className="grid-Archi5">
             <div className="loisirs">
+
+              <a className="github" href="https://www.twitch.tv/fatiiiih">
+                <GitHub size={24} />
+                <span>GitHub</span>
+              </a>
+
+              <a className="figma" href="https://www.instagram.com/watermeloon.music/">
+                <Figma size={24} />
+                <span>Figma</span>
+              </a>
+
+              <a className="linkedin" href="https://www.karminecorp.fr/collections/campus/products/polo-campus-beige">
+                <Linkedin size={24} />
+                <span>Linkedin</span>
+              </a>
+
             </div>
           </div>
-          <div className="grid-Archi6"
-            onClick={(e) => { e.stopPropagation(); scrollToSection(sectionRefs.others);}}>
-            contact me
+          <div className="grid-Archi6" onClick={(e) => { e.stopPropagation(); scrollToSection(sectionRefs.others); }}>
+            <div className="pulse-animation"></div>
+            <Mail className="contact-icon" />
+            <div className="contactText">Contact me</div>
+            <ArrowUpRight size={32} className="arrow-icon" />
+
+
           </div>
         </div>
       </div>
@@ -890,11 +1109,11 @@ function Home() {
           <div className="clothesDescription">Last Project</div>
         </div>
         <div className="clothesText">
-        <div className="clothesText1">
-          I started learning Blender at the beginning of 2025, 
-        I've already done a few projects and some of them using ThreeJS. 
-        I'm constantly learning in this field and 
-        I really enjoy it because curiosity makes me want to take on bigger challenges.</div>
+          <div className="clothesText1">
+            I started learning Blender at the beginning of 2025,
+            I've already done a few projects and some of them using ThreeJS.
+            I'm constantly learning in this field and
+            I really enjoy it because curiosity makes me want to take on bigger challenges.</div>
         </div>
       </div>
 
@@ -914,9 +1133,17 @@ function Home() {
             handleCardClick("/WebDesign", wbdContainerRef, wbdTransitionRef)
           }
         >
-          Web Design
+          <div className="clothesDescriptionContainer"></div>
+          <div className="clothesDescription">Last Project</div>
         </div>
-        <div className="wbdText"></div>
+
+        <div className="wbdText">
+          <div className="wbdText1">
+            I started learning Web Design at the beginning of 2023 when I was in my first year of study at Zone01.
+            I've already done a few projects and some of them using ThreeJS, React or Golang.
+            I'm constantly learning in this field and
+            I really enjoy it because curiosity makes me want to take on bigger challenges.</div>
+        </div>
       </div>
 
       {/* Others Container */}
@@ -937,7 +1164,10 @@ function Home() {
           <div className="othersText2">HAVE A PROJECT IN MIND ?</div>
           <div className="othersText">LET'S CREATE</div>
           <div className="othersText1">GREAT THINGS TOGETHER</div>
-          <button className="sendMail">Bultel0alan@gmail.com</button>
+          <button className="sendMail" onClick={function openEmail() {
+            window.location.href = "mailto:Bultel0alan@gmail.com";
+          }
+          }>Bultel0alan@gmail.com</button>
         </div>
       </div>
     </div>

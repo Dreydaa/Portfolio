@@ -124,6 +124,29 @@ const GalleryItem = ({ item, index }) => {
         }, 0.3);
     };
 
+    const videoElementRef = useRef(null);
+    const [videoLoaded, setVideoLoaded] = useState(false);
+
+    useEffect(() => {
+        // Only handle video loading when the item is open and there's video content
+        if (isOpen && item.videoContent && videoElementRef.current) {
+          // Reset loaded state when opening
+          setVideoLoaded(false);
+          
+          // Start loading the video
+          const videoElement = videoElementRef.current;
+          videoElement.load();
+          
+          // Set up event listeners
+          const handleLoaded = () => setVideoLoaded(true);
+          videoElement.addEventListener('loadeddata', handleLoaded);
+          
+          return () => {
+            videoElement.removeEventListener('loadeddata', handleLoaded);
+          };
+        }
+      }, [isOpen, item.videoContent]);
+
     return (
         <>
             <div className="gallery_container" style={{ left: `${96 + index * 750}px` }}>
@@ -141,7 +164,26 @@ const GalleryItem = ({ item, index }) => {
                     <div className="separation-1" ref={separation1Ref}></div>
                     <div className="art_details">
                         <button className="close-button" onClick={closeArt}>Close</button>
-                        <div className="video-load" ref={videoRef}>{item.videoContent}</div>
+                        <div className={`video-load ${!videoLoaded && isOpen ? 'loading' : ''}`} ref={videoRef}>
+                            {isOpen && item.videoContent && (
+                                <video 
+                                ref={videoElementRef}
+                                src={item.videoContent}
+                                loop
+                                autoPlay
+                                muted
+                                playsInline
+                                controls={false}
+                                onContextMenu={e => e.preventDefault()}
+                                style={{
+                                    width: "100%",
+                                    height: "100%",
+                                    objectFit: "cover",
+                                    pointerEvents: "none"
+                                }}
+                                />
+                            )}
+                            </div>
                         <div className="text-1" ref={text1Ref}>{item.text1}</div>
                         <div className="photo-1" ref={photo1Ref} style={{ backgroundImage: `url(${item.photo1})`, backgroundSize: "cover", color: "transparent" }}></div>
                         <div className="text-2" ref={text2Ref}>{item.text2}</div>
@@ -165,53 +207,18 @@ export default function Archi() {
     // Sample gallery items data - you can expand this array with your actual data
     const galleryItems = [
         {
-            photo: "",
-            title: "Project 1",
-            description: "Architecture design for modern homes",
-            videoContent: "Video content goes here",
-            text1: "This project explores modern architectural patterns...",
-            photo1: "",
-            text2: "The design incorporates sustainable materials...",
-            photo2: "",
-            text3: "Final implementation showcases elegant solutions...",
-            photo3: ""
+            photo: "https://zupimages.net/up/25/15/9zz5.png",
+            title: "Dream Penthouse",
+            description: "Utopian architecture and modern design.",
+            videoContent: "../../public/F40.mp4",
+            text1: "The element in this project was handmade for 90% of it",
+            photo1: "https://zupimages.net/up/25/16/n58q.png",
+            text2: "The inspiration come from some existing appartemnts in New York who merge old times and extra luxury",
+            photo2: "https://zupimages.net/up/25/16/94pb.png",
+            text3: "This project is a mix of work, in this one i learning many things like : Rendering, lighting, Modeling and some other things",
+            photo3: "https://zupimages.net/up/25/16/0cy3.png"
         },
-        {
-            photo: "",
-            title: "Project 2",
-            description: "Urban planning concept",
-            videoContent: "Urban planning video",
-            text1: "An innovative approach to urban spaces...",
-            photo1: "/path/to/urban1.jpg",
-            text2: "Community-focused design elements include...",
-            photo2: "/path/to/urban2.jpg",
-            text3: "The final concept received recognition for...",
-            photo3: "/path/to/urban3.jpg"
-        },
-        {
-            photo: "",
-            title: "Project 2",
-            description: "Urban planning concept",
-            videoContent: "Urban planning video",
-            text1: "An innovative approach to urban spaces...",
-            photo1: "",
-            text2: "Community-focused design elements include...",
-            photo2: "",
-            text3: "The final concept received recognition for...",
-            photo3: ""
-        },
-        {
-            photo: "",
-            title: "Project 2",
-            description: "Urban planning concept",
-            videoContent: "Urban planning video",
-            text1: "An innovative approach to urban spaces...",
-            photo1: "",
-            text2: "Community-focused design elements include...",
-            photo2: "",
-            text3: "The final concept received recognition for...",
-            photo3: ""
-        },
+        
         // Add more gallery items as needed
     ];
 
@@ -371,14 +378,13 @@ export default function Archi() {
 
     return (
         <>
-            <div ref={pageContainerRef} className="containergalley">
-            </div>
+            
             <div className="galley" ref={navButtonsRef}>
-                <button className="title_A" onClick={() => handleNavigation('/')}></button>
-                <button className="title_B" onClick={() => handleNavigation('/Clothes')}></button>
-                <button className="title_C" onClick={() => handleNavigation('/Animation')}></button>
-                <button className="title_D" onClick={() => handleNavigation('/Other')}></button>
+            <div ref={pageContainerRef} className="containergalley"><h4>BLENDER PROJECT</h4></div>
+                <button className="title" onClick={() => handleNavigation('/')}>Return to menu</button>
+                <button className="title" onClick={() => handleNavigation('/WebDesign')}>Check WebDesign project ?</button>
             </div>
+
 
             <div ref={galleryItemsContainerRef}>
                 {/* Render all gallery items dynamically */}

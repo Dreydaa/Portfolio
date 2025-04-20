@@ -15,9 +15,30 @@ body {
   src: url("../public/fonts/vogue/Vogue.ttf");
 }
 
-a {
-  text-decoration: none;
-  color: #0a0e14;
+@font-face {
+  font-family: 'Aspira';
+  src: url("../public/fonts/aspira/Aspira\ Regular.otf");
+}
+
+@font-face {
+  font-family: 'AspiraL';
+  src: url("../public/fonts/aspira/Aspira\ Light.otf");
+}
+
+@font-face {
+  font-family: 'AspiraB';
+  src: url("../public/fonts/aspira/Aspira\ Bold.otf");
+}
+
+
+@font-face {
+  font-family: 'AspiraBl';
+  src: url("../public/fonts/aspira/Aspira\ Black.otf");
+}
+
+@font-face {
+  font-family: 'AspiraI';
+  src: url("../public/fonts/aspira/Aspira\ Light\ Italic.otf");
 }
 
 button {
