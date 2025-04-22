@@ -1,36 +1,50 @@
 $color: #060606;
 
-
 .cross__svg {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    border-radius: 50%;
-    display: block;
-    height: 80px;
-    stroke-width: 3;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  border-radius: 50%;
+  display: block;
+  height: 80px;
+  stroke-width: 3;
 }
 
 .cross__circle {
-    fill: none;
-    margin: 0 auto;
-    stroke: $color;
-    stroke-dasharray: 166;
-    stroke-dashoffset: 166;
-    stroke-width: 2;
-    // Animation removed from here
+  fill: none;
+  margin: 0 auto;
+  stroke: $color;
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 2;
+  // Animation removed from here
 }
 
 .cross__path {
-    stroke: $color;
-    stroke-dasharray: 48;
-    stroke-dashoffset: 48;
-    transform-origin: 50% 50% 0;
-    // Animation removed from here
+  stroke: $color;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  transform-origin: 50% 50% 0;
+  // Animation removed from here
 }
 
 @keyframes stroke {
   100% {
     stroke-dashoffset: 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  .cross__svg {
+    position: absolute;
+    top: 105%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    stroke-width: 2;
+  }
+
+  .cross__circle {
+    stroke-width: 1;
   }
 }

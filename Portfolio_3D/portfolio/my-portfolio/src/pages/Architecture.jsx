@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import "../styles/Archi.css";
 import gsap from "gsap";
 
-
 // Gallery item component with its own details
 const GalleryItem = ({ item, index }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -18,11 +17,25 @@ const GalleryItem = ({ item, index }) => {
     const photo2Ref = useRef(null);
     const text3Ref = useRef(null);
     const photo3Ref = useRef(null);
+    const detailsContainerRef = useRef(null);
 
     // Opening animation sequence
     const openArt = () => {
         setIsOpen(true);
     };
+
+    // Handle window resize
+    useEffect(() => {
+        const handleResize = () => {
+            // If details are open, adjust their position based on screen size
+            if (isOpen && detailsContainerRef.current) {
+                // Any additional responsive adjustments if needed
+            }
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, [isOpen]);
 
     // Animation setup after component mounts/updates
     useEffect(() => {
@@ -130,60 +143,64 @@ const GalleryItem = ({ item, index }) => {
     useEffect(() => {
         // Only handle video loading when the item is open and there's video content
         if (isOpen && item.videoContent && videoElementRef.current) {
-          // Reset loaded state when opening
-          setVideoLoaded(false);
-          
-          // Start loading the video
-          const videoElement = videoElementRef.current;
-          videoElement.load();
-          
-          // Set up event listeners
-          const handleLoaded = () => setVideoLoaded(true);
-          videoElement.addEventListener('loadeddata', handleLoaded);
-          
-          return () => {
-            videoElement.removeEventListener('loadeddata', handleLoaded);
-          };
+            // Reset loaded state when opening
+            setVideoLoaded(false);
+
+            // Start loading the video
+            const videoElement = videoElementRef.current;
+            videoElement.load();
+
+            // Set up event listeners
+            const handleLoaded = () => setVideoLoaded(true);
+            videoElement.addEventListener('loadeddata', handleLoaded);
+
+            return () => {
+                videoElement.removeEventListener('loadeddata', handleLoaded);
+            };
         }
-      }, [isOpen, item.videoContent]);
+    }, [isOpen, item.videoContent]);
 
     return (
         <>
-            <div className="gallery_container" style={{ left: `${96 + index * 750}px` }}>
+            <div className="gallery_container">
                 <div className="gallery-items">
                     <div id={`art-${index}`} className="art" onClick={openArt} style={{ backgroundImage: `url(${item.photo})`, backgroundSize: "cover", color: "transparent" }}>{item.photo}
                         <div className="art-title">{item.title}</div>
-                        <div className="art-description">{item.description}</div>
+                        <div className="art-descriptionContainer">
+                            <div className="art-description">{item.Date}</div>
+                            <div className="art-description">{item.Time}</div>
+                        </div>
+                        <div className="art-description1">{item.description}</div>
                     </div>
                 </div>
             </div>
 
             {isOpen && (
-                <div className="separation_container">
+                <div className="separation_container" ref={detailsContainerRef}>
                     <div className="separation-0" ref={separation0Ref}></div>
                     <div className="separation-1" ref={separation1Ref}></div>
                     <div className="art_details">
                         <button className="close-button" onClick={closeArt}>Close</button>
                         <div className={`video-load ${!videoLoaded && isOpen ? 'loading' : ''}`} ref={videoRef}>
                             {isOpen && item.videoContent && (
-                                <video 
-                                ref={videoElementRef}
-                                src={item.videoContent}
-                                loop
-                                autoPlay
-                                muted
-                                playsInline
-                                controls={false}
-                                onContextMenu={e => e.preventDefault()}
-                                style={{
-                                    width: "100%",
-                                    height: "100%",
-                                    objectFit: "cover",
-                                    pointerEvents: "none"
-                                }}
+                                <video
+                                    ref={videoElementRef}
+                                    src={item.videoContent}
+                                    loop
+                                    autoPlay
+                                    muted
+                                    playsInline
+                                    controls={false}
+                                    onContextMenu={e => e.preventDefault()}
+                                    style={{
+                                        width: "100%",
+                                        height: "100%",
+                                        objectFit: "cover",
+                                        pointerEvents: "none"
+                                    }}
                                 />
                             )}
-                            </div>
+                        </div>
                         <div className="text-1" ref={text1Ref}>{item.text1}</div>
                         <div className="photo-1" ref={photo1Ref} style={{ backgroundImage: `url(${item.photo1})`, backgroundSize: "cover", color: "transparent" }}></div>
                         <div className="text-2" ref={text2Ref}>{item.text2}</div>
@@ -198,7 +215,7 @@ const GalleryItem = ({ item, index }) => {
 };
 
 export default function Archi() {
-    const naviguate = useNavigate();
+    const navigate = useNavigate();
     const pageContainerRef = useRef(null);
     const transitionOverlayRef = useRef(null);
     const galleryItemsContainerRef = useRef(null);
@@ -209,18 +226,34 @@ export default function Archi() {
         {
             photo: "https://zupimages.net/up/25/15/9zz5.png",
             title: "Dream Penthouse",
-            description: "Utopian architecture and modern design.",
-            videoContent: "../../public/F40.mp4",
+            description: "First project in 3D with Blender.",
+            Date: "April 7 2025",
+            Time: "60 hrs project",
+            videoContent: "/F40.mp4",
             text1: "The element in this project was handmade for 90% of it",
             photo1: "https://zupimages.net/up/25/16/n58q.png",
-            text2: "The inspiration come from some existing appartemnts in New York who merge old times and extra luxury",
+            text2: "The inspiration come from some existing apartments in New York who merge old times and extra luxury",
             photo2: "https://zupimages.net/up/25/16/94pb.png",
-            text3: "This project is a mix of work, in this one i learning many things like : Rendering, lighting, Modeling and some other things",
+            text3: "This project is a mix of work, in this one I learning many things like: Rendering, lighting, Modeling and some other things",
             photo3: "https://zupimages.net/up/25/16/0cy3.png"
         },
         
         // Add more gallery items as needed
     ];
+    
+    const [isMobile, setIsMobile] = useState(false);
+    
+    // Check screen size on mount and resize
+    useEffect(() => {
+        const checkScreenSize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        
+        checkScreenSize(); // Check initially
+        window.addEventListener('resize', checkScreenSize);
+        
+        return () => window.removeEventListener('resize', checkScreenSize);
+    }, []);
 
     // Page load animation
     useEffect(() => {
@@ -233,7 +266,7 @@ export default function Archi() {
             overlayElement.style.left = '0';
             overlayElement.style.width = '100%';
             overlayElement.style.height = '100%';
-            overlayElement.style.backgroundColor = '#060606'; // Using same color as in App.css
+            overlayElement.style.backgroundColor = '#F5F5F5'; // Using same color as in App.css
             overlayElement.style.zIndex = '1000';
             document.body.appendChild(overlayElement);
             transitionOverlayRef.current = overlayElement;
@@ -254,7 +287,7 @@ export default function Archi() {
             onComplete: () => {
                 // Re-enable scrolling after animation
                 document.body.style.overflow = '';
-                
+
                 // Remove overlay when done
                 if (transitionOverlayRef.current) {
                     transitionOverlayRef.current.style.pointerEvents = 'none';
@@ -286,14 +319,14 @@ export default function Archi() {
             ease: 'power3.out'
         }, '-=0.8');
 
-         // Animate nav buttons fading in
-         tl.to('.containergalley', {
-             y: '0',
-             opacity: 1,
-             stagger: 0.05,
-             duration: 0.6,
-             ease: 'back.out(1.7)'
-         }, '-=0.5');
+        // Animate nav buttons fading in
+        tl.to('.containergalley', {
+            y: '0',
+            opacity: 1,
+            stagger: 0.05,
+            duration: 0.6,
+            ease: 'back.out(1.7)'
+        }, '-=0.8');
 
         // Animate nav buttons fading in
         tl.to('.galley button', {
@@ -302,7 +335,7 @@ export default function Archi() {
             stagger: 0.05,
             duration: 0.6,
             ease: 'back.out(1.7)'
-        }, '-=0.5');
+        }, '-=0.8');
 
         // Cleanup function
         return () => {
@@ -337,56 +370,56 @@ export default function Archi() {
         // Animation timeline for exit
         const tl = gsap.timeline({
             onComplete: () => {
-                naviguate(destination);
+                navigate(destination);
             }
         });
 
         // Animate overlay coming down
         tl.to(transitionOverlayRef.current, {
             y: '0%',
-            duration: 0.8,
+            duration: 1,
+            opacity: 0,
             ease: 'power2.inOut'
         });
 
         // Animate gallery items out
         tl.to('.gallery_container', {
             y: '100vh',
-            stagger: 0.08,
-            duration: 0.6,
-            ease: 'power1.in'
+            stagger: 0.1,
+            duration: 0.5,
+            ease: 'power3.in'
         }, '-=0.6');
 
         // animate title galley
-
         tl.to('.containergalley', {
             y: '-50px',
             opacity: 0,
-            stagger: 0.05,
-            duration: 0.4,
+            stagger: 0.08,
+            duration: 0.6,
             ease: 'power1.in'
-        }, '-=0.6');
+        }, '-=0.8');
 
         // Animate nav buttons out
         tl.to('.galley button', {
             y: '-50px',
             opacity: 0,
-            stagger: 0.05,
-            duration: 0.4,
+            stagger: 0.08,
+            duration: 0.6,
             ease: 'power1.in'
-        }, '-=0.6');
+        }, '-=0.9');
     };
 
     return (
         <>
-            
-            <div className="galley" ref={navButtonsRef}>
-            <div ref={pageContainerRef} className="containergalley"><h4>BLENDER PROJECT</h4></div>
-                <button className="title" onClick={() => handleNavigation('/')}>Return to menu</button>
-                <button className="title" onClick={() => handleNavigation('/WebDesign')}>Check WebDesign project ?</button>
+            <div className={`galley ${isMobile ? 'mobile' : ''}`} ref={navButtonsRef}>
+                <div ref={pageContainerRef} className="containergalley"><h4>BLENDER PROJECT</h4></div>
+                <div className="nav-buttons">
+                    <button className="title" onClick={() => handleNavigation('/')}>Home</button>
+                    <button className="title" onClick={() => handleNavigation('/WebDesign')}>WebDesign</button>
+                </div>
             </div>
 
-
-            <div ref={galleryItemsContainerRef}>
+            <div ref={galleryItemsContainerRef} className="gallery-container-wrapper">
                 {/* Render all gallery items dynamically */}
                 {galleryItems.map((item, index) => (
                     <GalleryItem key={index} item={item} index={index} />

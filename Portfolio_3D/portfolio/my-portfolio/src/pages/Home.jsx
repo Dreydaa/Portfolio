@@ -415,21 +415,21 @@ function Home() {
       }, "<")
       .to(".cross__circle", {
         strokeDasharray: 0,
-        duration: 0.6,
+        duration: 0.2,
         ease: "linear",
-      }, '+=0.3')
+      }, '+=0.2')
       .to(".cross__path", {
         strokeDasharray: 0,
-        duration: 0.3,
+        duration: 0.1,
         ease: "linear",
         stagger: 0.1,
-      }, "+=0.3")
+      }, "+=0.2")
       .to(contentRefs.archi.current, {
         opacity: 0.7,
         scale: 1,
         filter: "blur(0px)",
         y: 0,
-        duration: 0.4,
+        duration: 0.2,
         ease: "power2.out",
       })
       .to(
@@ -935,7 +935,7 @@ function Home() {
           </div>
           {/* Bibi element - Clickable to open the menu */}
           <div className="bibi" ref={bibiRef} onClick={handleBibiClick}>
-            <ArrowDownIcon size={32} />
+            <ArrowDownIcon className="ArrowDownIcon" size={32} />
           </div>
         </div>
         <div className="welcome-to forced-visible">
@@ -1105,7 +1105,6 @@ function Home() {
             )
           }
         >
-          <div className="clothesDescriptionContainer"></div>
           <div className="clothesDescription">Last Project</div>
         </div>
         <div className="clothesText">
