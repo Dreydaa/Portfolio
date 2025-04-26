@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/App.css";
-import "../styles/fdd.scss";
+import "./../styles/mediaQuery.css";
 import "../components/App";
 import { gsap } from "gsap";
 import { Github as GitHub, Figma, Linkedin, Instagram, BlendIcon, ArrowRightCircle } from 'lucide-react';
@@ -230,7 +230,7 @@ function Home() {
         <div className="workContainer">
           <div className="work">
             <h4>Blender Project</h4>
-            <button onClick={() =>
+            <button classList onClick={() =>
               handleCardClick(
                 "/Blender",
                 clothesContainerRef,

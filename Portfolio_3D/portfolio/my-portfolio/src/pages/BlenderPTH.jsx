@@ -2,6 +2,7 @@ import { useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import gsap from "gsap";
 import "./../styles/BlenderPTH.css";
+import "./../styles/mediaQuery.css";
 import { Github as GitHub, Linkedin, Github, ArrowRightCircle, Instagram } from 'lucide-react';
 
 function Blender() {

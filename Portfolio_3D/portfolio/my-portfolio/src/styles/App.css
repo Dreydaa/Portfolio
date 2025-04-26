@@ -65,6 +65,73 @@ p.bigTxt {
   line-height: 38px;
 }
 
+.workContainer {
+  width: var(--widthPadding);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 120px;
+}
+
+.work {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.workBar {
+  width: var(--widthPadding);
+  height: 1px;
+  opacity: 0.3;
+  background-color: var(--darkBlue);
+  display: block;
+  margin: 15px 0;
+}
+
+
+.redirectBlender {
+  width: 20vw;
+  font-size: 18px;
+  height: 20vw;
+  background-color: var(--darkBlue);
+  border-radius: 64px;
+  color: #F8F4F1;
+  transition: transform 0.3s ease-in;
+  overflow: hidden;
+  z-index: 1;
+  margin: 20px 0;
+
+  background-image: url('https://zupimages.net/up/25/15/9zz5.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.redirectBlender:hover {
+  transform: scale(1.1);
+  border: var(--darkBlue) solid 5px;
+}
+
+.redirectwbd{
+  width: 20vw;
+  font-size: 18px;
+  height: 20vw;
+  background-color: var(--darkBlue);
+  border-radius: 64px;
+  color: #F8F4F1;
+  transition: transform 0.3s ease-in-out;
+  overflow: hidden;
+  z-index: 1;
+  margin: 20px 0;
+}
+
+.redirectwbd:hover {
+  transform: scale(1.1);
+  border: var(--darkBlue) solid 5px;
+}
+
 .skillBar {
   width: var(--widthPadding);
   height: 1px;
@@ -227,68 +294,4 @@ p.bigTxt {
   background-color: #4A4E69;
 }
 
-.redirectBlender {
-  width: 20vw;
-  font-size: 18px;
-  height: 20vw;
-  background-color: var(--darkBlue);
-  border-radius: 64px;
-  color: #F8F4F1;
-  transition: transform 0.3s ease-in;
-  overflow: hidden;
-  z-index: 1;
-  margin: 20px 0;
 
-  background-image: url('https://zupimages.net/up/25/15/9zz5.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.redirectBlender:hover {
-  transform: scale(1.1);
-  border: var(--darkBlue) solid 5px;
-}
-
-.redirectwbd{
-  width: 20vw;
-  font-size: 18px;
-  height: 20vw;
-  background-color: var(--darkBlue);
-  border-radius: 64px;
-  color: #F8F4F1;
-  transition: transform 0.3s ease-in-out;
-  overflow: hidden;
-  z-index: 1;
-  margin: 20px 0;
-}
-
-.redirectwbd:hover {
-  transform: scale(1.1);
-  border: var(--darkBlue) solid 5px;
-}
-
-.workContainer {
-  width: var(--widthPadding);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 120px;
-}
-
-.work {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.workBar {
-  width: var(--widthPadding);
-  height: 1px;
-  opacity: 0.3;
-  background-color: var(--darkBlue);
-  display: block;
-  margin: 15px 0;
-}
