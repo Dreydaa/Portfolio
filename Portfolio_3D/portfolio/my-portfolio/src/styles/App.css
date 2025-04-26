@@ -1,236 +1,249 @@
-/* ! menu button */
 
-.containerAll {
-  width: 100vw;
+:root {
+  --widthPadding: calc(100% - 200px);
+  --darkBlue: #161627;
+  --secondCOlor: #C9ADA7;
+}
+
+section#home {
   height: 100vh;
-}
-
-.bibiContainer {
-  position: fixed;
-  top: 0px;
-  left: 0;
-  right: 0;
   display: flex;
   justify-content: center;
-  align-self: center;
-  cursor: pointer;
-  z-index: 50;
+  align-items: center;
+  padding: 0px;
 }
 
-.bibi {
-  position: absolute;
-  left: 1%;
-  top: -20px;
-  width: 100px;
-  height: 50px;
-  transition: transform 0.3s ease-in-out;
-  background-color: #f5f5f5;
-  border-bottom-right-radius: 16px;
-  border-bottom-left-radius: 16px;
-  z-index: 51;
+section h1 {
+  color: #fff;
+  font-size: 17vw;
+  font-family: 'Eye';
+  font-weight: 10;
+  text-transform: uppercase;
+  letter-spacing: -0.4vw;
+}
 
+section#about {
+  background-color: #F8F4F1;
+}
+
+section#work {
+  background-color: #F8F4F1;
+}
+
+section#contact {
+  background-color: #F8F4F1;
+}
+
+.transitionBar {
+  width: var(--widthPadding);
+  height: 2px;
+  background-color: var(--darkBlue);
+  display: block;
+  margin: 60px 0 0 0;
+}
+
+.transitionBar.medium {
+  width: 35%;
+}
+
+.stickyContainer {
+  position: sticky;
+  top: 100px;
+}
+
+.colContainer {
   display: flex;
-  justify-content: center;
-  align-items: end;
+  width: var(--widthPadding);
+  gap: 120px;
+  padding: 60px 0 60px 0;
 }
 
-.bibi:hover {
-  transform: translateY(20px);
+p.bigTxt {
+  min-width: 40%;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 38px;
 }
 
-.bibiSuperContainer {
-  position: absolute;
-  z-index: 1;
-  width: 100vw;
+.skillBar {
+  width: var(--widthPadding);
+  height: 1px;
+  opacity: 0.3;
+  background-color: var(--darkBlue);
+  display: block;
+  margin: 15px 0;
 }
 
-.menuBibi {
-  height: 0;
+.skillTxt {
+  font-size: 22px;
+  font-weight: 200;
+}
+
+.interestsContainer {
+  width: var(--widthPadding);
+  display: flex;
+  justify-content: end;
+}
+
+.gridInterests {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 10px;
+  width: min-content;
+}
+
+.gridItem {
+  border: solid 1px red;
   width: 100%;
-  background-color: #f5f5f5;
-  overflow: hidden;
-
-  border-radius: 0px 0px 128px 128px;
-}
-
-.bibiContent {
-  position: relative;
-  padding: 64px;
-
-  font-family: "Vogue", sans-serif;
-  font-size: 60px;
-  letter-spacing: 5px;
-}
-
-.archibibi,
-.clotheibibi,
-.wbdbibi,
-.otherbibi {
-  margin-bottom: 32px;
-  width: 650px;
-  height: auto;
-  padding: 10px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-.archibibi:hover,
-.clotheibibi:hover,
-.wbdbibi:hover,
-.otherbibi:hover {
-  transform: translateX(20px);
-}
-
-.previewArchi {
-  position: absolute;
-  top: 64px;
-  right: 128px;
-  background-image: url('../../public/Images/cv.png');
+  height: 100%;
+  background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  width: 1080px;
-  height: 600px;
-  opacity: 0;
-  transform: translateX(30px);
-  pointer-events: none; /* Prevent clicking through even when visible */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
-}
-.previewClothes {
-  position: absolute;
-  top: 64px;
-  right: 128px;
-  background-image: url('../../public/Images/bl.png');
-  background-size: cover;
-  background-position: center;  width: 1080px;
-  height: 600px;
-  opacity: 0;
-  transform: translateX(30px);
-  pointer-events: none; /* Prevent clicking through even when visible */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-}
-.previewWbd {
-  position: absolute;
-  top: 64px;
-  right: 128px;
-  background-image: url('../../public/Images/wbd.png');
-  background-size: cover;
-  background-position: center;  width: 1080px;
-  height: 600px;
-  opacity: 0;
-  transform: translateX(30px);
-  pointer-events: none; /* Prevent clicking through even when visible */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-}
-.previewOther {
-  position: absolute;
-  top: 64px;
-  right: 128px;
-  background-image: url('../../public/Images/ctc.png');
-  background-size: cover;
-  background-position: center;  background-color: #4a4e69;
-  width: 1080px;
-  height: 600px;
-  opacity: 0;
-  transform: translateX(30px);
-  pointer-events: none; /* Prevent clicking through even when visible */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
+  align-content: center;
+  text-align: center;
+  height: 10vw;
+  width: 10vw;
 }
 
-/* ! Big text */
+.super {
+  width: var(--widthPadding);
+  display: flex;
+  justify-content: end;
+}
 
-.welcome-to {
-  position: absolute;
+.experienceContainerCol {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.experienceContainer {
+  width: var(--widthPadding);
+  display: flex;
+  flex-direction: column;
+}
+
+.ExpBar {
+  width: var(--widthPadding);
+  height: 1px;
+  opacity: 0.3;
+  background-color: var(--darkBlue);
+  display: block;
+  margin: 10px 0;
+}
+
+
+.ExpButton {
+
+  width: 50%;
+  height: 4vh;
+
+  border-radius: 64px;
+
+  font-size: 24px;
+  font-weight: 600;
+  color: #F8F4F1;
+  background-color: var(--darkBlue);
+
+  transition: transform 0.3s ease-in-out;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.ExpButton:hover {
+  transform: scale(1.1);
+  background-color: var(--secondCOlor);
+  border-color: var(--secondCOlor);
+  color: #4A4E69;
+}
+
+.contactContainer {
+  width: var(--widthPadding);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 240px;
+  margin: 30px 0;
+}
+
+.ct {
+  font-weight: 200;
+}
+
+.create {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.mailBtn {
+  width: 25%;
+  font-size: 18px;
+  height: 4vh;
+  background-color: var(--darkBlue);
+  border-radius: 64px;
+  color: #F8F4F1;
+  transition: transform 0.3s ease-in-out;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.mailBtn:hover {
+  transform: scale(1.1);
+  color: #F8F4F1;
+  background-color: #9A8C98;
+}
+
+.redirectBlender {
+  width: 20vw;
+  font-size: 18px;
+  height: 20vw;
+  background-color: var(--darkBlue);
+  border-radius: 64px;
+  color: #F8F4F1;
+  transition: transform 0.3s ease-in-out;
+  overflow: hidden;
+  z-index: 1;
+  margin: 20px 0;
+}
+.workContainer {
+  width: var(--widthPadding);
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
-  gap: 24px;
-  top: 462px;
-  left: 96px;
-}
-.welcome {
-  font-family: "Vogue";
-  font-style: italic;
-  font-size: 200px;
-
-  width: 1600px;
-  height: 135px;
-  border-radius: 16px;
-
-  color: #f5f5f5;
+  justify-content: center;
+  gap: 120px;
 }
 
-.my-portfolio {
-  position: absolute;
-  bottom: 32px;
-  left: 96px;
-
-  font-family: "Vogue";
-  font-style: italic;
-  font-size: 200px;
-
-  width: 1728px;
-  height: 270px;
-  border-radius: 16px;
-
-  color: #ffffff;
-}
-
-.jumping-letter {
-  display: inline-block;
-  animation: jump 2.5s ease-in-out infinite;
-}
-
-@keyframes jump {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-/*! Image Ferrari  */
-
-.parallax-container {
-  position: relative;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-}
-
-.parallax-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  will-change: transform;
-  z-index: -1;
-}
-
-.fullscreen-parallax {
+.work {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-/* Optional: Add a slight overlay for better text contrast */
-.parallax-container::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: transparent;
-  z-index: 0;
+.workBar {
+  width: var(--widthPadding);
+  height: 1px;
+  opacity: 0.3;
+  background-color: var(--darkBlue);
+  display: block;
+  margin: 15px 0;
 }
+
+
+
+
+
+
+
+
 
 /*! Card Containers */
 
@@ -893,26 +906,6 @@ margin-bottom: 20px;
   color: #F1F5F9;
 }
 
-.clothesText {
-  position: absolute;
-  top: 535px;
-  right: 128px;
-
-  width: 512px;
-  height: 375px;
-  background-color: #f5f5f5;
-
-  border-radius: 64px;
-}
-
-.clothesText1 {
-  margin-top: 38px;
-  margin-left: 24px;
-  margin-right: 24px;
-  font-family: "AspiraL", sans-serif;
-  font-size: 32px;
-}
-
 .webDesign {
   position: absolute;
   top: 160px;
@@ -922,26 +915,6 @@ margin-bottom: 20px;
   height: 750px;
   border-radius: 32px;
   background-color: #818181;
-}
-
-.wbdText {
-  position: absolute;
-  top: 160px;
-  left: 64px;
-
-  width: 512px;
-  height: 440px;
-  background-color: #f5f5f5;
-
-  border-radius: 64px;
-}
-
-.wbdText1 {
-  margin-top: 32px;
-  margin-left: 24px;
-  margin-right: 24px;
-  font-family: "AspiraL", sans-serif;
-  font-size: 32px;
 }
 
 .upperCovering {
@@ -1234,482 +1207,4 @@ html {
 .forced-visible {
   opacity: 1 !important;
   transform: translateY(0) !important;
-}
-
-
-
-
-
-
-
-/* Add these media queries at the bottom of your existing CSS */
-
-/* General responsive adjustments */
-@media (max-width: 1920px) {
-  .welcome, .my-portfolio {
-    font-size: 215px;
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Tablet styles (769px - 1024px) */
-@media (max-width: 1024px) {
-  .scroll-container {
-    height: auto;
-  }
-
-  .bibiContent {
-    font-size: 64px;
-    width: auto;
-    height: auto;
-  }
-
-  .ArrowDownIcon {
-    width: 30px;
-    top: -10px;
-  }
-
-  .menuBibi {
-    height: O;
-    width: 100%;
-    background-color: #f5f5f5;
-    overflow: hidden;
-    border-radius: 0px 0px 64px 64px;
-  }
-  
-  .archibibi, 
-  .clotheibibi, 
-  .wbdbibi, 
-  .otherbibi {
-    width: 100%;
-  }
-  
-  .previewArchi, 
-  .previewClothes, 
-  .previewWbd, 
-  .previewOther {
-    display: none !important; /* Hide previews on mobile */
-  }
-  
-  .welcome-to {
-    top: 750px;
-    left: 24px;
-  }
-
-  .welcome {
-    font-size: 100px;
-    font-style: italic;
-    margin-top: -10px;
-    word-break: break-all;
-  }
-  
-  .welcome, .my-portfolio {
-    width: 95vw;
-  }
-  
-  .my-portfolio {
-    font-style: italic;
-    letter-spacing: 0px;
-    font-size: 128px;
-    top: 830px;
-    left: 24px;
-  }
-
-  .parallax-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-size: cover;
-    height: 100%;
-    background-position: center;
-  }
-  
-  /* Stack architecture grid vertically on mobile */
-  .archi-container{
-    height: auto;
-  }
-
-  .architecture {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    padding: 16px;
-
-    height: auto;
-
-    grid-row-gap: 16px;
-  }
-
-  .grid-Archi {
-    height: auto;
-    padding: 16px;
-  }
-
-  .grid-Archi1 {
-    display: flex;
-    align-self: center;
-    justify-self: center;
-
-    height: 600px;
-    width: 70vw;
-  } 
-  
-  .skills-grid {
-    grid-template-columns: 1fr;
-  }
-
-
-  .clothes-container, .wbd-container{
-    height: auto;
-  }
-  
-  .clothes, .webDesign {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, 3%);
-
-    width: 90vw;
-  }
-
-  .clothesDescription {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-
-    background:rgba(255, 255, 255, 0.35); ;
-
-    font-size: 48px;
-    border-radius: 0px 24px 24px 32px;
-    width: auto;
-    height: auto;
-    padding: 8px;
-  }
-  
-  .clothesText  {
-    position: absolute;
-    height: auto;
-    width: 70vw;
-    top: 70%;
-    left: 50%;
-    transform: translate(-50%, 0%);
-    padding: 8px;
-    border-radius: 32px;
-  }
-
-  .wbdText {
-    position: absolute;
-    height: auto;
-    width: 70vw;
-    top: 70%;
-    left: 50%;
-    transform: translate(-50%, 0%);
-    padding: 8px;
-    border-radius: 32px;
-  } 
-
-  .clothesText1, .wbdText1 {
-    margin-top: 0px;
-    font-family: "AspiraL", sans-serif;
-    font-size: 32px;
-  }
-
-  .others-container {
-    height: 100vh
-  } 
-
-  .upperCovering {
-    position: absolute;
-    top: 0;
-    width: 100vw;
-    height: 200px;
-    background-color: #060606;
-    border-radius: 0px 0px 64px 64px;
-  }
-
-  .covering {
-    width: 100vw;
-    height: 1090px;
-    background-color: #f5f5f5;
-  }
-
-  .others {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, 1%);
-    height: auto;
-  }
-  
-  .othersText2 {
-    margin-top: 0px;
-    font-size: 5vw;
-  }
-  
-  .othersText1 {
-    font-size: 7vw;
-    margin-top: 20px;
-  }
-
-  .othersText {
-    font-size: 7vw;
-    margin-top: 10%;
-  }
-  
-  .sendMail {
-    position: absolute;
-    top: 125%;
-
-    background-color: #f1f5f9;
-    color: #060606;
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Mobile styles (up to 768px) */
-@media (max-width: 768px) {
-
-  .scroll-container {
-    height: auto;
-  }
-
-  .bibi {
-    width: 60px;
-    height: 40px;
-    top: -10px;
-  }
-
-  .ArrowDownIcon {
-    width: 30px;
-    top: -10px;
-  }
-
-  .menuBibi {
-    height: O;
-    width: 100%;
-    background-color: #f5f5f5;
-    overflow: hidden;
-    border-radius: 0px 0px 64px 64px;
-  }
-  
-  .bibiContent {
-    padding: 24px;
-    font-size: 28px;
-  }
-  
-  .archibibi, 
-  .clotheibibi, 
-  .wbdbibi, 
-  .otherbibi {
-    width: 100%;
-  }
-  
-  .previewArchi, 
-  .previewClothes, 
-  .previewWbd, 
-  .previewOther {
-    display: none !important; /* Hide previews on mobile */
-  }
-  
-  .welcome-to {
-    top: 420px;
-    left: 8px;
-    word-break: nobreak;
-  }
-
-  .welcome {
-    font-size: 48px;
-    font-style: italic;
-    margin-top: -10px;
-    word-break: nobreak;
-  }
-  
-  .welcome, .my-portfolio {
-    width: 95vw;
-  }
-  
-  .my-portfolio {
-    font-style: italic;
-    letter-spacing: 0px;
-    font-size: 70px;
-    top: 470px;
-    left: 8px;
-  }
-
-  .parallax-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-size: cover;
-    height: 100%;
-    background-position: center;
-  }
-  
-  /* Stack architecture grid vertically on mobile */
-  .archi-container{
-    height: auto;
-  }
-
-  .architecture {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    padding: 16px;
-
-    height: auto;
-
-    grid-row-gap: 8px;
-  }
-
-  .grid-Archi {
-    height: auto;
-    padding: 16px;
-  }
-
-  .grid-Archi1 {
-    height: 400px;
-  } 
-  
-  .skills-grid {
-    grid-template-columns: 1fr;
-  }
-
-
-  .clothes-container, .wbd-container{
-    height: auto;
-  }
-  
-  .clothes, .webDesign {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, 3%);
-
-    height: 400px;
-  }
-
-  .clothesDescription {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-
-    background:rgba(255, 255, 255, 0.35); ;
-
-    font-size: 40px;
-    border-radius: 0px 24px 24px 32px;
-    width: auto;
-    height: auto;
-    padding: 8px;
-  }
-  
-  .clothesText  {
-    position: absolute;
-    height: auto;
-    width: 90vw;
-    top: 65%;
-    padding: 8px;
-    border-radius: 32px;
-  }
-
-  .wbdText {
-    position: absolute;
-    height: auto;
-    width: 90vw;
-    top: 64%;
-    padding: 8px;
-    border-radius: 32px;
-  } 
-
-  .clothesText1, .wbdText1 {
-    margin-top: 0px;
-    font-family: "AspiraL", sans-serif;
-    font-size: 18px;
-  }
-
-  .others-container {
-    height: 100vh
-  } 
-
-  .upperCovering {
-    position: absolute;
-    top: 0;
-    width: 100vw;
-    height: 200px;
-    background-color: #060606;
-    border-radius: 0px 0px 64px 64px;
-  }
-
-  .covering {
-    width: 100vw;
-    height: 1090px;
-    background-color: #f5f5f5;
-  }
-
-  .others {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, 1%);
-    height: auto;
-  }
-  
-  .othersText2 {
-    margin-top: 0px;
-    font-size: 5vw;
-  }
-  
-  .othersText1 {
-    font-size: 7vw;
-    margin-top: 20px;
-  }
-
-  .othersText {
-    font-size: 7vw;
-    margin-top: 10%;
-  }
-  
-  .sendMail {
-    position: absolute;
-    top: 125%;
-
-    background-color: #f1f5f9;
-    color: #060606;
-  }
 }

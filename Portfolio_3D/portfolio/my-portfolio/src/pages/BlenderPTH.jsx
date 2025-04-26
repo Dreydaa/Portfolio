@@ -1,12 +1,14 @@
-import { useEffect, useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/Archi.css";
 import gsap from "gsap";
-import { Github as GitHub, Linkedin, Github } from 'lucide-react';
+import "./../styles/BlenderPTH.css";
+import { Github as GitHub, Linkedin, Github, ArrowRightCircle } from 'lucide-react';
 
-// Gallery item component with its own details
-const GalleryItem = () => {
+
+function Blender() {
     const navigate = useNavigate();
+
+    const transitionOverlayRef = useRef(null);
 
     // Refs for animation elements
     const handleNavigation = (destination) => {
@@ -46,8 +48,6 @@ const GalleryItem = () => {
             ease: 'power1.in'
         })
     };
-
-    const transitionOverlayRef = useRef(null);
 
     // Page load animation
     useEffect(() => {
@@ -123,49 +123,83 @@ const GalleryItem = () => {
         };
     }, []);
 
+
     return (
-        <>
+        <div>
             <header>
                 <span className="logoAB">AB</span>
                 <ul>
                     <li><a onClick={() => handleNavigation("/")}>Home</a></li>
                     <li><a onClick={() => handleNavigation("/Blender")}>Blender</a></li>
-                    <li><a href="#projects">Project</a></li>
+                    <li><a onClick={() => handleNavigation("/WebDesign")}>WebDesign</a></li>
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#process">Process</a></li>
                     <li><a href="#" className="logo"><Github size={24} /></a></li>
                     <li><a href="#" className="logo"><Linkedin size={24} /></a></li>
                 </ul>
             </header>
 
             <section id="home">
-                <div className="stickyContainer">
-                    <h1>Web Design</h1>
+                <div class="stickyContainer">
+                    <h1>The Apartment</h1>
                 </div>
             </section>
 
-            <section id="projects">
+
+            <section id="overview">
                 <span className="transitionBar"></span>
-                    <h2>Projects</h2>
-
-                    <div className="listContainer">
-                        <div className="gridProjects">
-                            <div onClick={() => navigate("/")} className="gridStatut gridO1">
-                            </div>
-                            {/* <div className="gridStatut grid2"></div>
-                            <div className="gridStatut grid3"></div>
-                            <div className="gridStatut grid4"></div>
-                            <div className="gridStatut grid5"></div>
-                            <div className="gridStatut grid6"></div>
-                            <div className="gridStatut grid7"></div>
-                            <div className="gridStatut grid8"></div>
-                            <div className="gridStatut grid9"></div>
-                            <div className="gridStatut grid10"></div>
-                            <div className="gridStatut grid11"></div>
-                            <div className="gridStatut grid12"></div> */}
-                        </div>
+                <h2>Overview</h2>
+                <div className="videoContainer">
+                    <div className="videoPlaying">
+                        <video
+                            src="../../public/F40.mp4"
+                            loop
+                            autoPlay
+                            muted
+                            playsInline
+                            controls={false}
+                            onContextMenu={e => e.preventDefault()}
+                            style={{
+                                width: "39vw",
+                                height: "75vh",
+                                overflow: "hidden",
+                                objectFit: "cover",
+                                pointerEvents: "none"
+                            }}
+                        />
                     </div>
+                    <div className="overviewText">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At laudantium quas ut neque, vero eum perspiciatis quibusdam. Velit quaerat autem quos similique ea, quod quisquam debitis, ipsum nulla nemo odit.</p>
+                    </div>
+                </div>
             </section>
-    </>
-    );
-};
+            <section id="process">
+                <span className="transitionBar"></span>
+                <h2>Process</h2>
+                <div className="imageContainer">
+                    <div className="overviewText">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At laudantium quas ut neque, vero eum perspiciatis quibusdam. Velit quaerat autem quos similique ea, quod quisquam debitis, ipsum nulla nemo odit.</p>
+                    </div>
+                    <div className="gridImage">
+                        <div className="gridImageItem gridimg1"></div>
+                        <div className="gridImageItem gridimg2"></div>
+                        <div className="gridImageItem gridimg3"></div>
+                        <div className="gridImageItem gridimg4"></div>
+                    </div>
+                </div>
+            </section>
+            <section id="next">
+                <span className="transitionBar"></span>
+                <h2>Next Project</h2>
 
-export default GalleryItem;
+                <div className="buttonContainer">
+                <button className="nextButton" onClick={() => handleNavigation("/")}>
+                    <p>Next Project</p><ArrowRightCircle  className="arrow" size={24} />
+                </button>
+                </div>
+            </section>
+        </div>
+    );
+}
+
+export default Blender

@@ -1,0 +1,418 @@
+
+
+/* Add these media queries at the bottom of your existing CSS */
+
+/* General responsive adjustments */
+@media (max-width: 1920px) {
+    .welcome, .my-portfolio {
+      font-size: 215px;
+    }
+  
+    .architecture {
+      height: auto;
+      width: auto;
+    }
+  }
+  
+  
+  /* Tablet styles (769px - 1024px) */
+  @media (max-width: 1024px) {
+    .scroll-container {
+      height: auto;
+    }
+  
+    .bibiContent {
+      font-size: 64px;
+      width: auto;
+      height: auto;
+    }
+  
+    .ArrowDownIcon {
+      width: 30px;
+      top: -10px;
+    }
+  
+    .menuBibi {
+      height: O;
+      width: 100%;
+      background-color: #f5f5f5;
+      overflow: hidden;
+      border-radius: 0px 0px 64px 64px;
+    }
+    
+    .archibibi, 
+    .clotheibibi, 
+    .wbdbibi, 
+    .otherbibi {
+      width: 100%;
+    }
+    
+    .previewArchi, 
+    .previewClothes, 
+    .previewWbd, 
+    .previewOther {
+      display: none !important; /* Hide previews on mobile */
+    }
+    
+    .welcome-to {
+      top: 750px;
+      left: 24px;
+    }
+  
+    .welcome {
+      font-size: 100px;
+      font-style: italic;
+      margin-top: -10px;
+      word-break: break-all;
+    }
+    
+    .welcome, .my-portfolio {
+      width: 95vw;
+    }
+    
+    .my-portfolio {
+      font-style: italic;
+      letter-spacing: 0px;
+      font-size: 128px;
+      top: 830px;
+      left: 24px;
+    }
+  
+    .parallax-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-size: cover;
+      height: 100%;
+      background-position: center;
+    }
+    
+    /* Stack architecture grid vertically on mobile */
+    .archi-container{
+      height: auto;
+    }
+  
+    .architecture {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 16px;
+  
+      height: auto;
+  
+      grid-row-gap: 16px;
+    }
+  
+    .grid-Archi {
+      height: auto;
+      padding: 16px;
+    }
+  
+    .grid-Archi1 {
+      display: flex;
+      align-self: center;
+      justify-self: center;
+  
+      height: 600px;
+      width: 70vw;
+    } 
+    
+    .skills-grid {
+      grid-template-columns: 1fr;
+    }
+  
+  
+    .clothes-container, .wbd-container{
+      height: auto;
+    }
+    
+    .clothes, .webDesign {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, 3%);
+  
+      width: 90vw;
+    }
+  
+    .clothesDescription {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+  
+      background:rgba(255, 255, 255, 0.35); ;
+  
+      font-size: 48px;
+      border-radius: 0px 24px 24px 32px;
+      width: auto;
+      height: auto;
+      padding: 8px;
+    }
+  
+    .others-container {
+      height: 100vh
+    } 
+  
+    .upperCovering {
+      position: absolute;
+      top: 0;
+      width: 100vw;
+      height: 200px;
+      background-color: #060606;
+      border-radius: 0px 0px 64px 64px;
+    }
+  
+    .covering {
+      width: 100vw;
+      height: 1090px;
+      background-color: #f5f5f5;
+    }
+  
+    .others {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, 1%);
+      height: auto;
+    }
+    
+    .othersText2 {
+      margin-top: 0px;
+      font-size: 5vw;
+    }
+    
+    .othersText1 {
+      font-size: 7vw;
+      margin-top: 20px;
+    }
+  
+    .othersText {
+      font-size: 7vw;
+      margin-top: 10%;
+    }
+    
+    .sendMail {
+      position: absolute;
+      top: 125%;
+  
+      background-color: #f1f5f9;
+      color: #060606;
+    }
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  /* Mobile styles (up to 768px) */
+  @media (max-width: 768px) {
+  
+    .scroll-container {
+      height: auto;
+    }
+  
+    .bibi {
+      width: 60px;
+      height: 40px;
+      top: -10px;
+    }
+  
+    .ArrowDownIcon {
+      width: 30px;
+      top: -10px;
+    }
+  
+    .menuBibi {
+      height: O;
+      width: 100%;
+      background-color: #f5f5f5;
+      overflow: hidden;
+      border-radius: 0px 0px 64px 64px;
+    }
+    
+    .bibiContent {
+      padding: 24px;
+      font-size: 28px;
+    }
+    
+    .archibibi, 
+    .clotheibibi, 
+    .wbdbibi, 
+    .otherbibi {
+      width: 100%;
+    }
+    
+    .previewArchi, 
+    .previewClothes, 
+    .previewWbd, 
+    .previewOther {
+      display: none !important; /* Hide previews on mobile */
+    }
+    
+    .welcome-to {
+      top: 420px;
+      left: 8px;
+      word-break: nobreak;
+    }
+  
+    .welcome {
+      font-size: 48px;
+      font-style: italic;
+      margin-top: -10px;
+      word-break: nobreak;
+    }
+    
+    .welcome, .my-portfolio {
+      width: 95vw;
+    }
+    
+    .my-portfolio {
+      font-style: italic;
+      letter-spacing: 0px;
+      font-size: 70px;
+      top: 470px;
+      left: 8px;
+    }
+  
+    .parallax-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-size: cover;
+      height: 100%;
+      background-position: center;
+    }
+    
+    /* Stack architecture grid vertically on mobile */
+    .archi-container{
+      height: auto;
+    }
+  
+    .architecture {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 16px;
+  
+      height: auto;
+  
+      grid-row-gap: 8px;
+    }
+  
+    .grid-Archi {
+      height: auto;
+      padding: 16px;
+    }
+  
+    .grid-Archi1 {
+      height: 400px;
+    } 
+    
+    .grid-Archi3 {
+      
+    }
+  
+    .skills-grid {
+      grid-template-columns: 1fr;
+    }
+  
+  
+    .clothes-container, .wbd-container{
+      height: auto;
+    }
+    
+    .clothes, .webDesign {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, 3%);
+  
+      height: 400px;
+    }
+  
+    .clothesDescription {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+  
+      background:rgba(255, 255, 255, 0.35); ;
+  
+      font-size: 40px;
+      border-radius: 0px 24px 24px 32px;
+      width: auto;
+      height: auto;
+      padding: 8px;
+    }
+  
+    .others-container {
+      height: 100vh
+    } 
+  
+    .upperCovering {
+      position: absolute;
+      top: 0;
+      width: 100vw;
+      height: 200px;
+      background-color: #060606;
+      border-radius: 0px 0px 64px 64px;
+    }
+  
+    .covering {
+      width: 100vw;
+      height: 1090px;
+      background-color: #f5f5f5;
+    }
+  
+    .others {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, 1%);
+      height: auto;
+    }
+    
+    .othersText2 {
+      margin-top: 0px;
+      font-size: 5vw;
+    }
+    
+    .othersText1 {
+      font-size: 7vw;
+      margin-top: 20px;
+    }
+  
+    .othersText {
+      font-size: 7vw;
+      margin-top: 10%;
+    }
+    
+    .sendMail {
+      position: absolute;
+      top: 125%;
+  
+      background-color: #f1f5f9;
+      color: #060606;
+    }
+  }

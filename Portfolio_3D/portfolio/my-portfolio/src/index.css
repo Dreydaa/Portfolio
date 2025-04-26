@@ -1,48 +1,113 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+@font-face {
+    font-family: "Eye";
+    src: url(../public/fonts/Eye\ Quirky\ Demo.ttf) format("truetype");
 }
+
+:root {
+    --widthPadding: calc(100% - 200px);
+    --darkBlue: #161627;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "DM Sans", sans-serif;
+    color: var(--darkBlue);
+}
+
+p {
+    font-size: 24px;
+    color: var(--darkBlue);
+    line-height: 30px;
+    letter-spacing: 1px;
+}
+
+h2 {
+    font-size: 68px;
+    padding-top: 30px;
+}
+
+h3 {
+    font-size: 36px;
+}
+
+h4 {
+    font-size: 32px;
+}
+
+h5 {
+  font-family: 'Eye';
+  font-size: 100px;
+  letter-spacing: -1px;
+  font-weight: 100;
+}
+
+
 
 body {
-  height: 100vh;
-  width: 100vw;
-  background-color: #060606;
+    background-color: var(--darkBlue);
+    overflow-x: hidden;
 }
 
-@font-face {
-  font-family: 'Vogue';
-  src: url("../public/fonts/vogue/Vogue.ttf");
+header {
+    position: fixed;
+    width: calc(100% - 200px);
+    height: 100px;
+    display: flex;
+    align-items: center;
+    padding: 0 100px;
+    color: #fff;
+    justify-content: space-between;
+    gap: 4vw;
+    z-index: 1;
+    mix-blend-mode: difference;
 }
 
-@font-face {
-  font-family: 'Aspira';
-  src: url("../public/fonts/aspira/Aspira\ Regular.otf");
+.header-inverted {
+    color: #000; 
+  }
+
+header .logo {
+    display: block;
+    width: 24px;
+    height: 24px;
+    background-size: cover;
+    filter: invert(1);
 }
 
-@font-face {
-  font-family: 'AspiraL';
-  src: url("../public/fonts/aspira/Aspira\ Light.otf");
+header .logoTwitter {
+    background-image: url(../public/meida/twitter.png);
 }
 
-@font-face {
-  font-family: 'AspiraB';
-  src: url("../public/fonts/aspira/Aspira\ Bold.otf");
+header .logoLinkedin {
+    background-image: url(../public/meida/linkedin.png);
 }
 
-
-@font-face {
-  font-family: 'AspiraBl';
-  src: url("../public/fonts/aspira/Aspira\ Black.otf");
+header .logoAB {
+    font-family: "Eye";
+    font-size: 50px;
+    color: white;
 }
 
-@font-face {
-  font-family: 'AspiraI';
-  src: url("../public/fonts/aspira/Aspira\ Light\ Italic.otf");
+header ul {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    gap: 4vw;
 }
 
-button {
-  cursor: pointer;
-  background-color: transparent;
-  border: none;
+header ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+}
+
+section {
+    width: 100%;
+    flex-direction: column;
+    padding: 60px 90px;
+    position: relative;
 }

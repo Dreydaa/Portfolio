@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Archi from './pages/Architecture';
 import Clothes from './pages/Clothes';
+import BlenderPTH from './pages/BlenderPTH';
 
 function App() {
   return (
@@ -10,8 +11,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Blender" element={<Archi />} />
-        <Route path="/WebDesign" element={<Clothes />} />
-        {/* Route pour les pages non trouvées */}
+        {/* Project in Blender */}
+        <Route path='/DreamPenthouse' element={<BlenderPTH />} />
+
+
+
+        <Route path="/WebDesign" element={<Clothes />} /> 
+        {/* Project in WebDesign */}       {/* Route pour les pages non trouvées */}
       </Routes>
     </div>
   );
