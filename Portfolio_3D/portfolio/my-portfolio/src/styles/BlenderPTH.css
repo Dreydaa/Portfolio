@@ -71,24 +71,26 @@ section#next{
 .overviewText {
   width: var(--widthPadding);
   display: flex;
+  flex-direction: column;
+  gap: 60px;
   justify-content: start;
   padding: 30px 0;
 }
 
 .gridimg1 {
-  background-image: url('');
+  background-image: url('https://zupimages.net/up/25/15/9zz5.png');
 }
 
 .gridimg2 {
-  background-image: url('');
+  background-image: url('https://zupimages.net/up/25/16/0cy3.png');
 }
 
 .gridimg3 {
-  background-image: url('');
+  background-image: url('https://zupimages.net/up/25/16/n58q.png');
 }
 
 .gridimg4 {
-  background-image: url('');
+  background-image: url('https://zupimages.net/up/25/16/94pb.png');
 }
 
 .videoPlaying {

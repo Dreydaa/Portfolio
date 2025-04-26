@@ -66,10 +66,11 @@ section#projects {
 }
 
 .gridG1 {
-  background-image: url('../../public/Images/tylerthecreator_chromakopia_hh02.jpg');
+  background-image: url('https://zupimages.net/up/25/15/9zz5.png');
   transition: transform 0.3s ease;
 }
 
 .gridG1:hover {
   transform: scale(1.03);
+  border: 2px solid var(--darkBlue);
 }

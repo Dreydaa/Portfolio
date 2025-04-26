@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Archi.css";
 import gsap from "gsap";
-import { Github as GitHub, Linkedin, Github } from 'lucide-react';
+import { Github as GitHub, Linkedin, Github, Inspect, Instagram } from 'lucide-react';
 
 // Gallery item component with its own details
 const GalleryItem = () => {
@@ -51,6 +51,12 @@ const GalleryItem = () => {
 
     // Page load animation
     useEffect(() => {
+
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        })
         // Create transition overlay if it doesn't exist in the DOM
         if (!document.querySelector('.page-transition-overlay')) {
             const overlayElement = document.createElement('div');
@@ -131,8 +137,8 @@ const GalleryItem = () => {
                     <li><a onClick={() => handleNavigation("/")}>Home</a></li>
                     <li><a onClick={() => handleNavigation("/WebDesign")}>WebDesign</a></li>
                     <li><a href="#projects">Project</a></li>
-                    <li><a href="#" className="logo"><Github size={24} /></a></li>
-                    <li><a href="#" className="logo"><Linkedin size={24} /></a></li>
+                    <li><a href="https://www.instagram.com/alan.dyd/" target="_blank" className="logo"><Instagram size={24} color="white"/></a></li>
+                    <li><a href="https://www.linkedin.com/in/alan-bultel/" target="_blank" className="logo"><Linkedin size={24} color="white"/></a></li>
                 </ul>
             </header>
 

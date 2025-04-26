@@ -74,16 +74,6 @@ header .logo {
     display: block;
     width: 24px;
     height: 24px;
-    background-size: cover;
-    filter: invert(1);
-}
-
-header .logoTwitter {
-    background-image: url(../public/meida/twitter.png);
-}
-
-header .logoLinkedin {
-    background-image: url(../public/meida/linkedin.png);
 }
 
 header .logoAB {
@@ -100,6 +90,7 @@ header ul {
 }
 
 header ul li a {
+    cursor: pointer;
     text-decoration: none;
     color: #fff;
     font-size: 18px;
@@ -110,4 +101,8 @@ section {
     flex-direction: column;
     padding: 60px 90px;
     position: relative;
+}
+
+button {
+    cursor: pointer;
 }

@@ -2,10 +2,10 @@ import { useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import gsap from "gsap";
 import "./../styles/BlenderPTH.css";
-import { Github as GitHub, Linkedin, Github, ArrowRightCircle } from 'lucide-react';
-
+import { Github as GitHub, Linkedin, Github, ArrowRightCircle, Instagram } from 'lucide-react';
 
 function Blender() {
+
     const navigate = useNavigate();
 
     const transitionOverlayRef = useRef(null);
@@ -51,6 +51,13 @@ function Blender() {
 
     // Page load animation
     useEffect(() => {
+
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'instant'
+        })
+
         // Create transition overlay if it doesn't exist in the DOM
         if (!document.querySelector('.page-transition-overlay')) {
             const overlayElement = document.createElement('div');
@@ -67,6 +74,8 @@ function Blender() {
         } else {
             transitionOverlayRef.current = document.querySelector('.page-transition-overlay');
         }
+
+        
 
         // Add class to body to prevent scrolling during animation
         document.body.style.overflow = 'hidden';
@@ -134,8 +143,8 @@ function Blender() {
                     <li><a onClick={() => handleNavigation("/WebDesign")}>WebDesign</a></li>
                     <li><a href="#overview">Overview</a></li>
                     <li><a href="#process">Process</a></li>
-                    <li><a href="#" className="logo"><Github size={24} /></a></li>
-                    <li><a href="#" className="logo"><Linkedin size={24} /></a></li>
+                    <li><a href="https://www.instagram.com/alan.dyd/" target="_blank" className="logo"><Instagram size={24} color="white"/></a></li>
+                    <li><a href="https://www.linkedin.com/in/alan-bultel/" target="_blank" className="logo"><Linkedin size={24} color="white"/></a></li>
                 </ul>
             </header>
 
@@ -169,7 +178,7 @@ function Blender() {
                         />
                     </div>
                     <div className="overviewText">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At laudantium quas ut neque, vero eum perspiciatis quibusdam. Velit quaerat autem quos similique ea, quod quisquam debitis, ipsum nulla nemo odit.</p>
+                        <p>The Apartments — Is my first Blender project, inspired by the New York penthouse, mixing old interior designs such as the brick walls found in the Manhattan district (nicknamed "Iceland of brick") or in Greenwich village (located in Manhattan)</p>
                     </div>
                 </div>
             </section>
@@ -178,7 +187,9 @@ function Blender() {
                 <h2>Process</h2>
                 <div className="imageContainer">
                     <div className="overviewText">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At laudantium quas ut neque, vero eum perspiciatis quibusdam. Velit quaerat autem quos similique ea, quod quisquam debitis, ipsum nulla nemo odit.</p>
+                    <p>In this project, I wanted to mix modernity and vintage according to my tastes, and in the middle of the living room there's a Ferrari F40 suspended from the ceiling, which is something very impractical for watching TV. There's also a vinyl corner, a bookcase and other furniture to liven up the room. </p>
+                    <p>I started with a flat plan on a sheet of paper to get my bearings and see where I was going to place my elements, then I created each element according to precise measurements and the idea I had in mind.</p>
+                    <p>Most of the models here were made by me, except for the Ferrari F40 and the vinyl player.</p>
                     </div>
                     <div className="gridImage">
                         <div className="gridImageItem gridimg1"></div>

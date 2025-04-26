@@ -88,13 +88,12 @@ p.bigTxt {
 .gridInterests {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-rows: repeat(1, 1fr);
   gap: 10px;
   width: min-content;
 }
 
 .gridItem {
-  border: solid 1px red;
   width: 100%;
   height: 100%;
   background-repeat: no-repeat;
@@ -105,6 +104,26 @@ p.bigTxt {
   text-align: center;
   height: 10vw;
   width: 10vw;
+}
+
+.grid1 {
+  background-image: url('https://images.unsplash.com/photo-1515523110800-9415d13b84a8?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+}
+
+.grid2 {
+  background-image: url('https://i.pinimg.com/736x/6b/38/b9/6b38b91403b5a77a1262186bec23c51c.jpg');
+}
+
+.grid3 {
+  background-image: url('https://plus.unsplash.com/premium_photo-1679830513869-cd3648acb1db?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+}
+
+.grid4 {
+  background-image: url('https://i.pinimg.com/236x/9e/69/28/9e6928211bb9e6117a87f9d05b83d44a.jpg');
+}
+
+.grid5 {
+  background-image: url('');
 }
 
 .super {
@@ -127,6 +146,14 @@ p.bigTxt {
   flex-direction: column;
 }
 
+.chiant {
+  font-size: 24px;
+  color: #F8F4F1;
+  line-height: 30px;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
 .ExpBar {
   width: var(--widthPadding);
   height: 1px;
@@ -138,27 +165,28 @@ p.bigTxt {
 
 
 .ExpButton {
-
   width: 50%;
   height: 4vh;
 
   border-radius: 64px;
 
-  font-size: 24px;
-  font-weight: 600;
   color: #F8F4F1;
   background-color: var(--darkBlue);
 
   transition: transform 0.3s ease-in-out;
   overflow: hidden;
   z-index: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
 }
 
 .ExpButton:hover {
   transform: scale(1.1);
-  background-color: var(--secondCOlor);
-  border-color: var(--secondCOlor);
-  color: #4A4E69;
+  background-color: #4A4E69;
+  color: #F8F4F1;
 }
 
 .contactContainer {
@@ -197,10 +225,33 @@ p.bigTxt {
 .mailBtn:hover {
   transform: scale(1.1);
   color: #F8F4F1;
-  background-color: #9A8C98;
+  background-color: #4A4E69;
 }
 
 .redirectBlender {
+  width: 20vw;
+  font-size: 18px;
+  height: 20vw;
+  background-color: var(--darkBlue);
+  border-radius: 64px;
+  color: #F8F4F1;
+  transition: transform 0.3s ease-in;
+  overflow: hidden;
+  z-index: 1;
+  margin: 20px 0;
+
+  background-image: url('https://zupimages.net/up/25/15/9zz5.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.redirectBlender:hover {
+  transform: scale(1.1);
+  border: var(--darkBlue) solid 5px;
+}
+
+.redirectwbd{
   width: 20vw;
   font-size: 18px;
   height: 20vw;
@@ -212,6 +263,12 @@ p.bigTxt {
   z-index: 1;
   margin: 20px 0;
 }
+
+.redirectwbd:hover {
+  transform: scale(1.1);
+  border: var(--darkBlue) solid 5px;
+}
+
 .workContainer {
   width: var(--widthPadding);
   display: flex;
