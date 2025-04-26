@@ -19,7 +19,7 @@ function Home() {
     // Create an anchor element and set properties for download
     const link = document.createElement('a');
     link.href = pdfData;
-    link.download = 'Curriculum Vitae.pdf';
+    link.download = 'Alan Bultel Curriculum Vitae.pdf';
 
     // Append to the document, click and remove
     document.body.appendChild(link);
