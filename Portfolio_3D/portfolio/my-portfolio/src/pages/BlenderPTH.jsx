@@ -137,8 +137,8 @@ function Blender() {
     return (
         <div>
             <header>
-                <span className="logoAB">AB</span>
-                <ul>
+                <span className="logoAB" onClick={() => handleNavigation("/")}>AB</span>
+                <ul className="nav">
                     <li><a onClick={() => handleNavigation("/")}>Home</a></li>
                     <li><a onClick={() => handleNavigation("/Blender")}>Blender</a></li>
                     <li><a onClick={() => handleNavigation("/WebDesign")}>WebDesign</a></li>
@@ -170,8 +170,6 @@ function Blender() {
                             controls={false}
                             onContextMenu={e => e.preventDefault()}
                             style={{
-                                width: "39vw",
-                                height: "75vh",
                                 overflow: "hidden",
                                 objectFit: "cover",
                                 pointerEvents: "none"

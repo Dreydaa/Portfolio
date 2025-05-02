@@ -1,5 +1,6 @@
 import { useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import BurgerMenu from "../components/BurgerMenu.jsx";
 import "../styles/App.css";
 import "./../styles/mediaQuery.css";
 import "../components/App";
@@ -33,6 +34,15 @@ function Home() {
 
   // Page load animation
   useEffect(() => {
+
+    const handleMenuToggle = (e) => {
+      if (e.mail) {
+        document.body.classList.toggle('menu-open', e.detail.isOpen);
+
+      }
+    };
+
+    window.addEventListener('menuToggle', handleMenuToggle);
 
     window.scrollTo({
       top: 0,
@@ -102,13 +112,18 @@ function Home() {
       ease: 'back.out(1.7)'
     }, '-=0.8');
 
+
     // Cleanup function
     return () => {
+      window.removeEventListener('menuToggle', handleMenuToggle);
+
       if (transitionOverlayRef.current && transitionOverlayRef.current.parentNode) {
         transitionOverlayRef.current.parentNode.removeChild(transitionOverlayRef.current);
       }
       document.body.style.overflow = '';
     };
+
+    
   }, []);
 
 
@@ -208,7 +223,7 @@ function Home() {
 
       <header>
         <span className="logoAB">AB</span>
-        <ul>
+        <ul className="nav">
           <li><a href="#home">Home</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#work">Work</a></li>
@@ -216,6 +231,11 @@ function Home() {
           <li><a href="https://www.instagram.com/alan.dyd/" className="logo" target="_blank"><Instagram size={24} color="white" /></a></li>
           <li><a href="https://www.linkedin.com/in/alan-bultel/" target="_blank" className="logo"><Linkedin size={24} color="white" /></a></li>
         </ul>
+
+        <ul className="burger">
+          <BurgerMenu />
+        </ul>
+
       </header>
 
       <section id="home">

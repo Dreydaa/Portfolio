@@ -27,6 +27,10 @@ section#projects {
   background-color: white;
 }
 
+.nav {
+  display: none;
+}
+
 .transitionBar {
   width: var(--widthPadding);
   height: 2px;

@@ -1,7 +1,7 @@
 :root {
   --widthPadding: calc(100% - 200px);
   --darkBlue: #161627;
-  --secondCOlor: #C9ADA7;
+  --secondCOlor: #c9ada7;
 }
 
 ::-webkit-scrollbar {
@@ -35,18 +35,23 @@ section#outcome {
   background-color: white;
 }
 
-section#next{
+section#next {
   background-color: white;
 }
 
-.imageContainer, .videoContainer{
+.nav {
+  display: none;
+}
+
+.imageContainer,
+.videoContainer {
   width: var(--widthPadding);
   display: flex;
   justify-content: start;
   gap: 30px;
 }
 
-.gridImage{
+.gridImage {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
@@ -54,7 +59,7 @@ section#next{
   width: min-content;
 }
 
-.gridImageItem{
+.gridImageItem {
   border: solid 1px black;
   width: 100%;
   height: 100%;
@@ -78,24 +83,24 @@ section#next{
 }
 
 .gridimg1 {
-  background-image: url('https://zupimages.net/up/25/15/9zz5.png');
+  background-image: url("https://zupimages.net/up/25/15/9zz5.png");
 }
 
 .gridimg2 {
-  background-image: url('https://zupimages.net/up/25/16/0cy3.png');
+  background-image: url("https://zupimages.net/up/25/16/0cy3.png");
 }
 
 .gridimg3 {
-  background-image: url('https://zupimages.net/up/25/16/n58q.png');
+  background-image: url("https://zupimages.net/up/25/16/n58q.png");
 }
 
 .gridimg4 {
-  background-image: url('https://zupimages.net/up/25/16/94pb.png');
+  background-image: url("https://zupimages.net/up/25/16/94pb.png");
 }
 
 .videoPlaying {
-  width: var(--widthPadding);
-  height: fit-content;
+  width: 50vw;
+  height: 75vh;
   display: flex;
   justify-content: center;
   padding: 30px 0;
@@ -119,5 +124,58 @@ section#next{
   flex-direction: row;
   padding: 15px 0;
   border-radius: 16px;
-  color: #f8f4F1;
+  color: #f8f4f1;
+}
+
+@media (max-width: 781px) {
+  .videoContainer, .imageContainer {
+    width: calc(100% - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 0;
+    gap: 15px;
+  }
+
+  .videoPlaying {
+    width: 80vw;
+    display: flex;
+    justify-content: center;
+    padding: 0 0;
+  }
+
+  .overviewText {
+    width: calc(100% - 10px);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 0 0;
+  }
+
+  .gridImage {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 10px;
+    width: min-content;
+  }
+
+  .gridImageItem {
+    height: 50vh;
+    width: 85vw;
+  }
+
+  .buttonContainer {
+    display: flex;
+    justify-content: start;
+    padding: 0 0;
+  }
+  
+  .nextButton {
+    gap: 15px;
+    width: 80%;
+    padding: 0 0;
+    
+  }
 }

@@ -133,8 +133,8 @@ const GalleryItem = () => {
     return (
         <>
             <header>
-                <span className="logoAB">AB</span>
-                <ul>
+                <span className="logoAB" onClick={() => handleNavigation("/")}>AB</span>
+                <ul className="nav">
                     <li><a onClick={() => handleNavigation("/")}>Home</a></li>
                     <li><a onClick={() => handleNavigation("/Blender")}>Blender</a></li>
                     <li><a href="#projects">Project</a></li>
