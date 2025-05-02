@@ -45,7 +45,7 @@
   }
 
   header {
-    width: var(--widthPadding);
+    width: 100%;
     position: fixed;
     justify-content: center;
     align-items: center;
