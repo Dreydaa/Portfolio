@@ -129,7 +129,7 @@ section#next {
 
 @media (max-width: 781px) {
   .videoContainer, .imageContainer {
-    width: calc(100% - 60px);
+    width: calc(100%);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -146,7 +146,7 @@ section#next {
   }
 
   .overviewText {
-    width: calc(100% - 10px);
+    width: calc(100%);
     display: flex;
     flex-direction: column;
     gap: 30px;

@@ -82,7 +82,7 @@ section#projects {
 @media (max-width: 781px) {
     /* ! Project responsive */
     .listContainer {
-      width: calc(100% - 40px);
+      width: calc(100%);
       display: flex;
       justify-content: center;
       margin: 60px 0;
