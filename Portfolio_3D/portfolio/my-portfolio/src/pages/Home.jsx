@@ -7,6 +7,7 @@ import "../components/App";
 import { gsap } from "gsap";
 import { Github as GitHub, Figma, Linkedin, Instagram, BlendIcon, ArrowRightCircle } from 'lucide-react';
 
+
 function openEmail() {
   window.location.href = "mailto:Bultel0alan@gmail.com";
 }
@@ -37,7 +38,7 @@ function Home() {
 
     const handleMenuToggle = (e) => {
       if (e.mail) {
-        document.body.classList.toggle('menu-open', e.detail.isOpen);
+        document.body.classlist.toggle('menu-open', e.detail.isOpen);
 
       }
     };
@@ -68,12 +69,6 @@ function Home() {
 
     // Add class to body to prevent scrolling during animation
     document.body.style.overflow = 'hidden';
-
-    // Initial setup for page elements
-    gsap.set('.gallery_container', { y: '100vh' }); // Set gallery items below screen
-    gsap.set('.galley button', { y: '-50px', opacity: 0 }); // Set nav buttons above
-    gsap.set('.containergalley', { y: '-50px', opacity: 0 }); // Set nav buttons above
-
     // Create animation timeline
     const tl = gsap.timeline({
       onComplete: () => {
@@ -204,10 +199,10 @@ function Home() {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           // Header is over the dark section
-          header.classList.add('header-inverted');
+          header.classlist.add('header-inverted');
         } else {
           // Header is not over the dark section
-          header.classList.remove('header-inverted');
+          header.classlist.remove('header-inverted');
         }
       });
     }, { threshold: 0.1 }); // Trigger when at least 10% of the section is visible
@@ -223,7 +218,7 @@ function Home() {
 
       <header>
         <span className="logoAB">AB</span>
-        <ul className="nav">
+        <ul>
           <li><a href="#home">Home</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#work">Work</a></li>
@@ -231,12 +226,12 @@ function Home() {
           <li><a href="https://www.instagram.com/alan.dyd/" className="logo" target="_blank"><Instagram size={24} color="white" /></a></li>
           <li><a href="https://www.linkedin.com/in/alan-bultel/" target="_blank" className="logo"><Linkedin size={24} color="white" /></a></li>
         </ul>
-
-        <ul className="burger">
+        <ol className="burger">
           <BurgerMenu />
-        </ul>
-
+        </ol> 
       </header>
+
+
 
       <section id="home">
         <div className="stickyContainer">
@@ -250,7 +245,7 @@ function Home() {
         <div className="workContainer">
           <div className="work">
             <h4>Blender Project</h4>
-            <button classList onClick={() =>
+            <button onClick={() =>
               handleCardClick(
                 "/Blender",
                 clothesContainerRef,
@@ -276,6 +271,7 @@ function Home() {
         </div>
 
       </section>
+
 
       <section id="about">
         <span className="transitionBar"></span>

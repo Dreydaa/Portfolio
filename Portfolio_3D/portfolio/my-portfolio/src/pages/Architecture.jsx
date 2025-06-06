@@ -138,8 +138,8 @@ const GalleryItem = () => {
                     <li><a onClick={() => handleNavigation("/")}>Home</a></li>
                     <li><a onClick={() => handleNavigation("/WebDesign")}>WebDesign</a></li>
                     <li><a href="#projects">Project</a></li>
-                    <li><a href="https://www.instagram.com/alan.dyd/" target="_blank" className="logo"><Instagram size={24} color="white"/></a></li>
-                    <li><a href="https://www.linkedin.com/in/alan-bultel/" target="_blank" className="logo"><Linkedin size={24} color="white"/></a></li>
+                    <li><a href="https://www.instagram.com/alan.dyd/" target="_blank" className="logo"><Instagram size={24} color="white" /></a></li>
+                    <li><a href="https://www.linkedin.com/in/alan-bultel/" target="_blank" className="logo"><Linkedin size={24} color="white" /></a></li>
                 </ul>
             </header>
 
@@ -151,13 +151,13 @@ const GalleryItem = () => {
 
             <section id="projects">
                 <span className="transitionBar"></span>
-                    <h2>Projects</h2>
+                <h2>Projects</h2>
 
-                    <div className="listContainer">
-                        <div className="gridProjects">
-                            <div onClick={() => navigate("/DreamPenthouse")} className="gridStatut gridG1">
-                            </div>
-                            {/* <div className="gridStatut grid2"></div>
+                <div className="listContainer">
+                    <div className="gridProjects">
+                        <div onClick={() => navigate("/DreamPenthouse")} className="gridStatut gridG1">
+                        </div>
+                        {/* <div className="gridStatut grid2"></div>
                             <div className="gridStatut grid3"></div>
                             <div className="gridStatut grid4"></div>
                             <div className="gridStatut grid5"></div>
@@ -168,10 +168,10 @@ const GalleryItem = () => {
                             <div className="gridStatut grid10"></div>
                             <div className="gridStatut grid11"></div>
                             <div className="gridStatut grid12"></div> */}
-                        </div>
                     </div>
+                </div>
             </section>
-    </>
+        </>
     );
 };
 

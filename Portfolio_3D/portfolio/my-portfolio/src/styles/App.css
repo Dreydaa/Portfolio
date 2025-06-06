@@ -53,7 +53,6 @@ section#contact {
 
 .colContainer {
   display: flex;
-  width: var(--widthPadding);
   gap: 120px;
   padding: 60px 0 60px 0;
 }
@@ -66,7 +65,6 @@ p.bigTxt {
 }
 
 .workContainer {
-  width: var(--widthPadding);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -194,7 +192,6 @@ p.bigTxt {
 }
 
 .super {
-  width: var(--widthPadding);
   display: flex;
   justify-content: end;
 }
@@ -257,7 +254,6 @@ p.bigTxt {
 }
 
 .contactContainer {
-  width: var(--widthPadding);
   display: flex;
   align-items: center;
   flex-direction: column;

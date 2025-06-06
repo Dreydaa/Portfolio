@@ -5,32 +5,14 @@
 }
 
 @media (max-width: 1440px) {
-  .burger {
-    display: none;
-  }
 }
 
 @media (max-width: 1024px) {
-  :root {
-    --widthPadding: calc(100% - 40px);
-  }
 
-  .burger {
-    display: none;
-  }
-
-  .bigTxt {
-    min-width: 100%;
-  }
-
-  .colContainer {
-    flex-direction: column;
-    gap: 30px;
-  }
 }
 
 @media (max-width: 781px) {
-  :root {
+   :root {
     --widthPadding: calc(100% - 100px);
   }
 
@@ -47,7 +29,7 @@
   header {
     width: 100%;
     position: fixed;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
   }
 
@@ -78,8 +60,8 @@
     font: 100;
   }
 
-  .nav {
-    display: none;
+   header ul {
+    display: none;;
   }
 
   .burger {
@@ -157,7 +139,7 @@
   }
   
   /* Add overlay when menu is open */
-  body.menu-open {
+   body.menu-open {
     overflow: hidden;
   }
   
@@ -264,15 +246,15 @@
 
   .gridInterests {
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(1, 1fr);
     gap: 10px;
     width: min-content;
   }
 
   .gridItem {
-    height: 50vw;
-    width: 50vw;
+    height: 15vw;
+    width: 15vw;
   }
 
   .contactContainer {
@@ -304,5 +286,81 @@
   }
   .chiant {
     font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+   :root {
+    --widthPadding: calc(100% - 100px);
+  }
+
+  section {
+    width: 100%;
+    padding: 15px 20px;
+  }
+
+  button {
+    cursor: pointer;
+    border: none;
+  }
+
+  header {
+    width: 100%;
+    position: fixed;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  h1 {
+    display: flex;
+    justify-content: center;
+  }
+
+  h2 {
+    font-size: 34px;
+    padding-top: 0px;
+    width: calc(100%);
+  }
+
+  h3 {
+    font-size: 24px;
+    width: 100%;
+  }
+
+  h4 {
+    font-size: 18px;
+  }
+
+  h5 {
+    font-family: "Eye";
+    font-size: 45px;
+    letter-spacing: -1;
+    font: 100;
+  }
+
+  p.bigTxt {
+    font-size: 22px;
+    line-height: 25px;
+  }
+
+  .colContainer {
+    display: flex;
+    width: calc(100%);
+    flex-direction: column;
+    gap: 60px;
+    padding: 60px 0 60px 0;
+  }
+
+  .experienceContainerCol {
+    width: calc(100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 15px;
+  }
+
+  .gridItem {
+    height: 20vw;
+    width: 20vw;
   }
 }
